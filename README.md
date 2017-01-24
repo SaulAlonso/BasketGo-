@@ -1,4 +1,4 @@
-# Nombre de la Aplicación Web: BasketGo-
+# BasketGo-
 Todo lo que necesitas como seguidor de este deporte
 
 Descripción Temática de la Web:
