@@ -31,7 +31,7 @@ Permitirá descargar la clasificación de la liga seleccionada en formato PDF pa
 ## Integrantes del Proyecto:
 * Saúl Alonso Martín
   + Correo: s.alonsoma@alumnos.urjc.es
-  + Github: saulalonso
-* Juan Carlos Lopez De La Torre 
+  + Github: SaulAlonso
+* Juan Carlos López De La Torre 
  + Correo: jc.lopezd@alumnos.urjc.es
  + Github: JuanCarlosLopezdeTorre
