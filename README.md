@@ -4,14 +4,17 @@ Todo lo que necesitas como seguidor de este deporte.
 
 ## Descripción Temática de la Web:
 
-Esta aplicación se trata de una herramienta total para tu equipo, con ella se puede gestionar todos los aspectos del tu equipo asi como de la liga en la que te encuentras, organizar torneos... todo lo necesario para la practica de este deporte
+Esta aplicación se trata de una herramienta total para tu equipo, con ella se puede gestionar todos los aspectos del tu equipo asi como de la liga en la que te encuentras, organizar torneos... todo lo necesario para la practica de este deporte.
 
 * Parte Pública: 
-  + Se podrá consultar tanto calendarios como clasificaciones, incluyendo también estadisticas de jugadores o de los equipos, ademas de una lista de lesionados, todo ello se podrá hacer si previo registro.
+  + Se podrá consultar tanto calendarios como clasificaciones.
+  + Datos de los jugadores de cada equipo (Edad, Nombre, Altura, Número de ficha).
+  + Información relativa a cada equipo (Nombre, Partidos jugados, Victorias, Derrotas, Número de jugadores).
+  
 
 * Parte Privada: 
-  + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este sera el usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. Incluyendo tambien la creacion de citas en el calendario a la que los jugadores del equipo deberan asistir, y por consiguiente los jugadores podran visualizarlas una vez logueados.
-Se puede crear una lista de lesionados del equipo, la cual se podrá consultar para ver la fecha de vuelta del jugador.
+  + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este sera el      usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. Incluyendo tambien la creacion de citas en el calendario a la que los jugadores del equipo deberán asistir, y por consiguiente los jugadores podran visualizarlas una vez logueados.
+  + Se puede crear una lista de lesionados del equipo, la cual se podrá consultar para ver la fecha de vuelta del jugador.
  
 ## Entidades Principales:
 Jugador: características de un jugador (nombre, equipo al que pertenece, edad, nacionalidad y valor de mercado).
