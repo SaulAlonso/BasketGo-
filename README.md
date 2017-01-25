@@ -13,18 +13,18 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
   
 
 * Parte Privada: 
-  + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este sera el      usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. Incluyendo tambien la creacion de citas en el calendario a la que los jugadores del equipo deberán asistir, y por consiguiente los jugadores podran visualizarlas una vez logueados.
+  + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este será el      usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. Incluyendo tambien la creacion de citas en el calendario a la que los jugadores del equipo deberán asistir, y por consiguiente los jugadores podran visualizarlas una vez logueados.
   + Se puede crear una lista de lesionados del equipo, la cual se podrá consultar para ver la fecha de vuelta del jugador.
+  + Existira tambien un usuario administrador que creará los torneos y se encargará de su administración.
  
 ## Entidades Principales:
-Jugador: características de un jugador (nombre, equipo al que pertenece, edad, nacionalidad y valor de mercado).
-Equipo: nombre de un equipo y plantilla de la que dispone para disputar el Torneo.
-Mánager: director de un equipo, el cual es el encargado de inscribir a su equipo en una determinada liga y de gestionar su plantilla.
-Torneo: campeonato de liga en el cúal se van a inscribir un máximo de 20 equipos por liga.
-Palmarés: ranking de campeones del torneo en los últimos años.
+* Liga: En el que jugarán todos los equipos teniendo enfrentamientos entre cada uno de ellos, se podrán inscribir un maximo de jugadores elegido por el administrador de la liga.
+* Clasificación: Listado ordenado de equipos según su puntuación.
+* Equipo: Poseerá un nombre único, asi como sus victorias y derrotas y los jugadores inscritos.
+* Usuario: Existiendo dos tipos de usuarios como son el entrenador que será el encargado de crear el equipo asi como inscribir a cada uno de los jugadores en dicho equipo y el usuario administrador que encargará de la creación de liga.
+* Jugador: Contendrá las caracteristicas especificas como son nombre, altura edad y numero de ficha.
 
 
 ## Integrantes del Proyecto:
-Saúl Alonso Martín. Correo: s.alonsoma@alumnos.urjc.es
-
-Juan Carlos Lopez De La Torre. Correo: jc.lopezd@alumnos.urjc.es
++ Saúl Alonso Martín. Correo: s.alonsoma@alumnos.urjc.es
++ Juan Carlos Lopez De La Torre. Correo: jc.lopezd@alumnos.urjc.es
