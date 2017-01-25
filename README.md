@@ -10,7 +10,7 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
   + Se podrá consultar tanto calendarios como clasificaciones.
   + Datos de los jugadores de cada equipo (Edad, Nombre, Altura, Número de ficha).
   + Información relativa a cada equipo (Nombre, Partidos jugados, Victorias, Derrotas, Número de jugadores).
-  + Detalles de cada partido (Equipos enfrentados, Liga a la que pertenecen, Resultado).
+  + Detalles de cada partido (Equipos enfrentados, Liga a la que pertenecen, Resultado, Fecha).
 
 * Parte Privada: 
   + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este será el      usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. Incluyendo tambien la creacion de citas en el calendario a la que los jugadores del equipo deberán asistir, y por consiguiente los jugadores podran visualizarlas una vez logueados.
@@ -23,7 +23,10 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
 * Equipo: Poseerá un nombre único, asi como sus victorias y derrotas y los jugadores inscritos.
 * Usuario: Existiendo dos tipos de usuarios como son el entrenador que será el encargado de crear el equipo asi como inscribir a cada uno de los jugadores en dicho equipo y el usuario administrador que encargará de la creación de liga.
 * Jugador: Contendrá las caracteristicas especificas como son nombre, altura edad y numero de ficha.
-* Partido: Se encarga de almacenar tanto los equipos como el resultado y su liga.
+* Partido: Se encarga de almacenar tanto los equipos,, la fecha, el resultado y su liga.
+
+## Servicio de la web:
+Permitirá descargar la clasificación de la liga seleccionada.
 
 ## Integrantes del Proyecto:
 + Saúl Alonso Martín. Correo: s.alonsoma@alumnos.urjc.es
