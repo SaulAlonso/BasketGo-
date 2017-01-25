@@ -29,5 +29,9 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
 Permitirá descargar la clasificación de la liga seleccionada en formato PDF para su lectura offline.
 
 ## Integrantes del Proyecto:
-+ Saúl Alonso Martín. Correo: s.alonsoma@alumnos.urjc.es
-+ Juan Carlos Lopez De La Torre. Correo: jc.lopezd@alumnos.urjc.es
+* Saúl Alonso Martín. 
+  + Correo: s.alonsoma@alumnos.urjc.es
+  + Github: saulalonso.
+* Juan Carlos Lopez De La Torre. 
+ + Correo: jc.lopezd@alumnos.urjc.es
+ + Github: JuanCarlosLopezdeTorre
