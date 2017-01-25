@@ -26,7 +26,7 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
 * Partido: Se encarga de almacenar tanto los equipos,, la fecha, el resultado y su liga.
 
 ## Servicio de la web:
-Permitirá descargar la clasificación de la liga seleccionada.
+Permitirá descargar la clasificación de la liga seleccionada en formato PDF para su lectura offline.
 
 ## Integrantes del Proyecto:
 + Saúl Alonso Martín. Correo: s.alonsoma@alumnos.urjc.es
