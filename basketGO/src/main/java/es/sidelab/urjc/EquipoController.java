@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,9 +20,9 @@ public class EquipoController {
 	}
 	
 	@RequestMapping("/equipos/")
-	public Page<Equipo> todosEquipos(Pageable page, Sort sort){
+	public Page<Equipo> todosEquipos(Pageable page){
 		
-		return equipo.findAll(page, new Sort("nombreEquipo"));
+		return equipo.findAll(page);
 		
 	}
 	

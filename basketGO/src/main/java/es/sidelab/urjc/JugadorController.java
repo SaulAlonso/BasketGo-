@@ -1,5 +1,7 @@
 package es.sidelab.urjc;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +22,14 @@ public class JugadorController {
 	public void init(){
 	}
 	
-	@RequestMapping("/jugadores/")
+	@RequestMapping("/jugadores")
 	public Page<Jugador> todosJugadores(Pageable page){
-		
-		return jugador.findAll(page);
+		List<Jugador> listaJugadores = (List<Jugador>) jugador.findAll(page);
+		return listaJugadores;
 		
 	}
 	
-	@RequestMapping("/jugadores/porNombre/")
+	@RequestMapping("/jugadores/porNombre")
 	public Page<Jugador> nombreJugadores(String nombre, Pageable page){
 		
 		return jugador.findByNombre(nombre, page);

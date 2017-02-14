@@ -10,7 +10,6 @@ public class Jugador {
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private long id;
-	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int numeroFicha;
 	

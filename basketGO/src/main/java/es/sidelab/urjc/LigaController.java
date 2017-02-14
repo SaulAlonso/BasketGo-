@@ -1,5 +1,6 @@
 package es.sidelab.urjc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -46,8 +47,11 @@ public class LigaController {
 		jugador.save(jugador9);
 		jugador.save(jugador10);
 		
-		Equipo equipo1 = new Equipo("Equipo1", 10, 2, 12, null);
-		Equipo equipo2 = new Equipo("Equipo2", 2, 12, 2, null);
+		List<Jugador> lista1 = new ArrayList<Jugador> ();		
+		List<Jugador> lista2 = new ArrayList<Jugador> ();
+
+		Equipo equipo1 = new Equipo("Equipo1", 10, 2, 12, lista1);
+		Equipo equipo2 = new Equipo("Equipo2", 2, 12, 2, lista2);
 		
 		equipo1.getListaJugadores().add(jugador1);
 		equipo1.getListaJugadores().add(jugador2);
@@ -62,18 +66,17 @@ public class LigaController {
 		
 		equipo.save(equipo1);
 		equipo.save(equipo2);
-		
-		Clasificacion clasificacion1 = new Clasificacion(null);
+		List<Equipo> lista3 = new ArrayList<Equipo> ();		
+
+		Clasificacion clasificacion1 = new Clasificacion(lista3);
 		
 		clasificacion1.getListaClasificacion().add(equipo1);
 		clasificacion1.getListaClasificacion().add(equipo2);
 		
 		clasificacion.save(clasificacion1);
 		
-		Liga liga1 = new Liga("Liga1", null);
-		
-		liga1.setClasificacion(clasificacion1);
-		
+		Liga liga1 = new Liga("Liga1", clasificacion1);
+				
 		liga.save(liga1);
 		
 	}
