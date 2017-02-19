@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,18 +20,24 @@ public class EquipoController {
 	public void init(){
 	}
 	
-	@RequestMapping("/equipos/")
+/*	@RequestMapping("/equipos/")
 	public Page<Equipo> todosEquipos(Pageable page){
 		
 		return equipo.findAll(page);
 		
+	}*/
+	
+	@RequestMapping("/equipos") 
+	public String paginaJugadores(Model model){
+		model.addAttribute("listaequipos", equipo.findAll());
+		return "equipo";
 	}
 	
-	@RequestMapping("/equipos/porNombre/")
+/*	@RequestMapping("/equipos/porNombre/")
 	public Page<Equipo> nombreEquipos(String nombre, Pageable page){
 		
 		return equipo.findByNombreEquipo(nombre, page);
 		
-	}
+	}*/
 
 }
