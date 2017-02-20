@@ -1,6 +1,7 @@
 html, body {
 	height: 100%;
 	font-family: 'Arial', Helvetica;
+	color:withe;
 	/*background: #000000 url('http://127.0.0.1/Sam/images/bgdots.png') repeat-x;*/
 /*	display: none;
 */}
@@ -34,12 +35,14 @@ html, body {
 	min-height: 100%;
 	*margin: 0 auto -6.25em;
 	overflow: hidden;
+	color:withe;
 }
 
 	.wrapper {
     background-image: url(../images/fondo.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
+    color:withe;
 	}
 
 
@@ -50,6 +53,7 @@ html, body {
 	margin: 0 auto;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
+	color:withe;
 }
 
 .content {
@@ -61,14 +65,17 @@ html, body {
 	padding-top: 50px;
 	font-family: 'Helvetica Neue', Arial, Tahoma;
 	font-weight: 200;
+	color:withe;
 }
 
 	.content h1 {
 		font-size: 48px;
+		color:withe;
 	}
 
 	.content h2 {
 		font-size: 24px;
+		color:withe;
 	}
 
 	.content .slogan {
@@ -103,6 +110,7 @@ html, body {
 	width: 1000px;
 	margin: 0 auto;
 	height: 100%;
+	color:withe;
 	/* border-left: 1px solid #FFFFFF; */
 	/* border-top: 1px solid  33; */
 	/* box-shadow: inset 0 1px 0 white; */

@@ -32,18 +32,17 @@
 				</div>
 			</div>
 		
-		{{#creacionliga}}
-		<form action="creando" method="post">
-			<p style="color: white;">Nombre Liga:</p>
-			<input type='text' name='nombreLiga'>
-			<p style="color: white;">Equipo 1:</p>
-			<input type='text' name='nombreEquipo1'>
-			<p style="color: white;">Equipo 2:</p>
-			<input type='text' name='nombreEquipo2'>
+		{{#creacionequipo}}
+		<form action="registro" method="post">
+			<p style="color: white;">Nombre Equipo:</p>
+			<input type='text' name='nombreEquipo'>
+			<p style="color: white;">Jugadores:</p>
+			<textarea name='jugadores' rows=5 cols=40></textarea>
+			<p style="color: white;">Nombre de los 5 jugadores separados por comas:</p>
 			
 			<input type='submit' value='Enviar'>
 		</form>
-		{{/creacionliga}}
+		{{/creacionequipo}}
 		{{#mensaje}}
 		<h1 style="color: white;">{{mensaje}}</h1>
 		{{/mensaje}}

@@ -27,7 +27,6 @@
 						<li rel="Liga"><a href="/liga">Ligas</a></li>
 						<li rel="Equipos"><a href="/equipos">Equipos</a></li>
 						<li rel="Jugadores"><a href="/jugadores">Jugadores</a></li>
-						<li rel="Registro"><a href="/">Log In</a></li>
 
 					</ul>
 				</div>
@@ -35,17 +34,21 @@
 			
 		<form action="/liga/creacion" method="get">
 		<input type='submit' value='Crear Liga'>
+		</form><form action="/liga/gestion" method="get">
+		<input type='submit' value='Gestionar Liga'>
+		</form><form action="/liga/anadir" method="get">
+		<input type='submit' value='Añadir Equipos Liga'>
 		</form>
 		
 		<form action="/liga/clasificacion" method="post">
-			<h2>Nombre Liga:</h2>
+			<h2 style="color: white;">Nombre Liga:</h2>
 			<input type='text' name='nombreLiga'>
 			
 			<input type='submit' value='Enviar'>
 		</form>
 		
 		{{#mensaje}}
-		<h2>{{mensaje}}</h2>
+		<h2 style="color: white;">{{mensaje}}</h2>
 		{{/mensaje}}
 		
 		</div>

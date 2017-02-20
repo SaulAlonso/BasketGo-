@@ -15,27 +15,26 @@ public class Usuario {
 	private long id;
 	
 	private boolean administrador;
-	private String nombreId;
+	private String nombre;
 	private String contraseña;
-	@OneToOne
-	private Equipo equipo;
+	private String nombreEquipo;
 	
 	public Usuario() {
 		
 	}
 	
 
-	public Usuario(String nombreId, String contraseña) {
-		this.nombreId = nombreId;
+	public Usuario(String nombre, String contraseña) {
+		this.nombre = nombre;
 		this.contraseña = contraseña;
 	}
 
 
-	public Usuario(Boolean administrador, String nombreId, String contraseña, Equipo equipo) {
+	public Usuario(Boolean administrador, String nombre, String contraseña, String nombreEquipo) {
 		this.administrador = administrador;
-		this.nombreId = nombreId;
+		this.nombre = nombre;
 		this.contraseña = contraseña;
-		this.equipo = equipo;
+		this.nombreEquipo = nombreEquipo;
 	}
 	
 	public Boolean getAdministrador() {
@@ -46,12 +45,12 @@ public class Usuario {
 		this.administrador = administrador;
 	}
 	
-	public String getNombreId() {
-		return nombreId;
+	public String getNombre() {
+		return nombre;
 	}
 	
-	public void setNombreId(String nombreId) {
-		this.nombreId = nombreId;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	public String getContraseña() {
@@ -62,12 +61,12 @@ public class Usuario {
 		this.contraseña = contraseña;
 	}
 	
-	public Equipo getEquipo() {
-		return equipo;
+	public String getNombreEquipo() {
+		return nombreEquipo;
 	}
 	
-	public void setEquipo(Equipo equipo) {
-		this.equipo = equipo;
+	public void setNombreEquipo(String nombreEquipo) {
+		this.nombreEquipo = nombreEquipo;
 	}
 	
 }

@@ -24,7 +24,6 @@
 						<li><a href="/liga">Ligas</a></li>
 						<li><a href="/equipos">Equipos</a></li>
 						<li><a href="/jugadores">Jugadores</a></li>
-						<li><a href="/login">Log In</a></li>
 
 					</ul>
 				</div>
@@ -32,10 +31,10 @@
 
 		</div>
 		{{#bienvenida}}
-		<h1 style="">Bienvenido!!!!</h1>
+		<h1 style="color: white;">¡Bienvenido {{usuario}}!</h1>
 		{{/bienvenida}}
 		{{#logueado}}
-		<h2>{{nombreId}}</h2>
+		<h2 style="color: white;">{{nombreId}}</h2>
 		{{/logueado}}
 	</div>
 </body>

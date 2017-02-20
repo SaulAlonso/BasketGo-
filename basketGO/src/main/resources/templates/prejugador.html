@@ -31,23 +31,22 @@
 					</ul>
 				</div>
 			</div>
+			
+		<form action="/jugadores/creacion" method="get">
+		<input type='submit' value='Registrar Jugador'>
+		</form>
 		
-		{{#creacionliga}}
-		<form action="creando" method="post">
-			<p style="color: white;">Nombre Liga:</p>
-			<input type='text' name='nombreLiga'>
-			<p style="color: white;">Equipo 1:</p>
-			<input type='text' name='nombreEquipo1'>
-			<p style="color: white;">Equipo 2:</p>
-			<input type='text' name='nombreEquipo2'>
+		<form action="/jugadores/porNombre" method="post">
+			<h2 style="color: white;">Nombre Jugador:</h2>
+			<input type='text' name='nombreJugador'>
 			
 			<input type='submit' value='Enviar'>
 		</form>
-		{{/creacionliga}}
+		
 		{{#mensaje}}
-		<h1 style="color: white;">{{mensaje}}</h1>
+		<h2 style="color: white;">{{mensaje}}</h2>
 		{{/mensaje}}
-
+		
 		</div>
 	</div>
 </body>

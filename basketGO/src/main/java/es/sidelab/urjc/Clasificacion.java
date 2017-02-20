@@ -18,7 +18,7 @@ public class Clasificacion {
 	private long id;
 	private String nombreClasificacion;
 	
-	@OneToMany
+	@OneToMany (cascade=CascadeType.ALL)
 	private List<Equipo> listaClasificacion;
 	
 	public Clasificacion() {
