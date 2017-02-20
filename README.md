@@ -30,19 +30,34 @@ Permitirá descargar la clasificación de la liga seleccionada en formato PDF pa
 
 ## Capturas de pantalla
 * Página principal 
-<a href="http://es.tinypic.com?ref=ru8q6e" target="_blank"><img src="http://i65.tinypic.com/ru8q6e.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-* Página de jugadores 
-<a href="http://es.tinypic.com?ref=nqemvd" target="_blank"><img src="http://i63.tinypic.com/nqemvd.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-* Página con lista de equipos
-<a href="http://es.tinypic.com?ref=359bls1" target="_blank"><img src="http://i64.tinypic.com/359bls1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-* Página de las ligas 
+===
+  <a href="http://es.tinypic.com?ref=ru8q6e" target="_blank"><img src="http://i65.tinypic.com/ru8q6e.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página de jugadores 
+===
+  <a href="http://es.tinypic.com?ref=nqemvd" target="_blank"><img src="http://i63.tinypic.com/nqemvd.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página con lista de equipos
+===
+  <a href="http://es.tinypic.com?ref=359bls1" target="_blank"><img src="http://i64.tinypic.com/359bls1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página de las ligas 
+===
 <a href="http://es.tinypic.com?ref=23w6wle" target="_blank"><img src="http://i67.tinypic.com/23w6wle.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-* Página para registrar una liga nueva
+===
+Página para registrar una liga nueva
+===
 <a href="http://es.tinypic.com?ref=k2igt3" target="_blank"><img src="http://i65.tinypic.com/k2igt3.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-* Ejemplo error crear liga nueva
+===
+Ejemplo error crear liga nueva
+===
 <a href="http://es.tinypic.com?ref=15h23a1" target="_blank"><img src="http://i66.tinypic.com/15h23a1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-* Ejemplo error buscar liga
+===
+Ejemplo error buscar liga
+===
 <a href="http://es.tinypic.com?ref=qn7hp4" target="_blank"><img src="http://i68.tinypic.com/qn7hp4.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+
 ## Integrantes del Proyecto:
 * Saúl Alonso Martín
   + Correo: s.alonsoma@alumnos.urjc.es
