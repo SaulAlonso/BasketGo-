@@ -29,22 +29,37 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
 Permitirá descargar la clasificación de la liga seleccionada en formato PDF para su lectura offline.
 
 ## Capturas de pantalla
-* Página principal 
+Página de inicio/log
 ===
-  <a href="http://es.tinypic.com?ref=ru8q6e" target="_blank"><img src="http://i65.tinypic.com/ru8q6e.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=bfn8kk" target="_blank"><img src="http://i67.tinypic.com/bfn8kk.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página principal 
+===
+<a href="http://es.tinypic.com?ref=eb7hwp" target="_blank"><img src="http://i68.tinypic.com/eb7hwp.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 Página de jugadores 
 ===
-  <a href="http://es.tinypic.com?ref=nqemvd" target="_blank"><img src="http://i63.tinypic.com/nqemvd.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=2uj2xkg" target="_blank"><img src="http://i66.tinypic.com/2uj2xkg.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
-Página con lista de equipos
+Página buscar jugadores
 ===
-  <a href="http://es.tinypic.com?ref=359bls1" target="_blank"><img src="http://i64.tinypic.com/359bls1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=29on12t" target="_blank"><img src="http://i68.tinypic.com/29on12t.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página para buscar equipo
+===
+<a href="http://es.tinypic.com?ref=332wj1g" target="_blank"><img src="http://i64.tinypic.com/332wj1g.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página para la gestion del equipo
+===
+<a href="http://es.tinypic.com?ref=2u9ubd3" target="_blank"><img src="http://i67.tinypic.com/2u9ubd3.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página registrar equipo
+===
+<a href="http://es.tinypic.com?ref=200ptzm" target="_blank"><img src="http://i63.tinypic.com/200ptzm.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 Página de las ligas 
 ===
-<a href="http://es.tinypic.com?ref=23w6wle" target="_blank"><img src="http://i67.tinypic.com/23w6wle.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-===
+<a href="http://es.tinypic.com?ref=35koraw" target="_blank"><img src="http://i65.tinypic.com/35koraw.jpg" border="0" alt="Image and video hosting by TinyPic"></a>===
 Página para registrar una liga nueva
 ===
 <a href="http://es.tinypic.com?ref=k2igt3" target="_blank"><img src="http://i65.tinypic.com/k2igt3.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
