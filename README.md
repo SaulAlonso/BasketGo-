@@ -72,7 +72,18 @@ Ejemplo error buscar liga
 ===
 <a href="http://es.tinypic.com?ref=qn7hp4" target="_blank"><img src="http://i68.tinypic.com/qn7hp4.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
-
+## Diagrama UML
+===
+<a href="http://es.tinypic.com?ref=1znmy6e" target="_blank"><img src="http://i65.tinypic.com/1znmy6e.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+## Diagrama E/R
+===
+<a href="http://es.tinypic.com?ref=157ovp1" target="_blank"><img src="http://i65.tinypic.com/157ovp1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+## Diagrama de secuencia adicional
+===
+<a href="http://es.tinypic.com?ref=345ok0h" target="_blank"><img src="http://i64.tinypic.com/345ok0h.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
 ## Integrantes del Proyecto:
 * Saúl Alonso Martín
   + Correo: s.alonsoma@alumnos.urjc.es
