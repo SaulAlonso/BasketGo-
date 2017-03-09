@@ -12,12 +12,12 @@ public class Equipo {
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private long id;
 	@GeneratedValue (strategy = GenerationType.AUTO)
-	private int fichaEquipo;
+	private long fichaEquipo;
 	private String nombreEquipo;
 	private int puntuacion;
 	private int numeroDerrotas;
 	private int numeroVictorias;
-	@OneToMany
+	@OneToMany (cascade=CascadeType.ALL)
 	private List<Jugador> listaJugadores;
 	
 

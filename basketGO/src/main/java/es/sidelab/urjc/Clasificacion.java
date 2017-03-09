@@ -16,16 +16,17 @@ public class Clasificacion {
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private long id;
+	private String nombreClasificacion;
 	
-	
-	@OneToMany
+	@OneToMany (cascade=CascadeType.ALL)
 	private List<Equipo> listaClasificacion;
 	
 	public Clasificacion() {
 		
 	}
 	
-	public Clasificacion(List<Equipo> listaClasificacion) {
+	public Clasificacion(String nombreClasificacion, List<Equipo> listaClasificacion) {
+		this.nombreClasificacion = nombreClasificacion;
 		this.listaClasificacion = listaClasificacion;
 	}
 	
@@ -34,7 +35,7 @@ public class Clasificacion {
 		Collections.sort(listaClasificacion, new Comparator<Equipo>() {
 			@Override
 			public int compare(Equipo arg0, Equipo arg1) {
-				return new Integer(arg0.getPuntuacion()).compareTo(new Integer(arg1.getPuntuacion())) ;
+				return new Integer(arg1.getPuntuacion()).compareTo(new Integer(arg0.getPuntuacion())) ;
 			}
 		});
 		return listaClasificacion;
@@ -44,7 +45,13 @@ public class Clasificacion {
 		this.listaClasificacion = listaClasificacion;
 	}
 
+	public String getNombreClasificacion() {
+		return nombreClasificacion;
+	}
 
+	public void setNombreClasificacion(String nombreClasificacion) {
+		this.nombreClasificacion = nombreClasificacion;
+	}
 	
 	
 

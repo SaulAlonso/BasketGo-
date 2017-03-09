@@ -4,23 +4,36 @@
 <meta charset="utf-8" />
 <title>BasketGO</title>
 <meta name="description" content="BasketGo" />
-<link rel="stylesheet" href="../resources/static/css/style.css" />
+<link rel="stylesheet" href="../css/style.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'
 	rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 	<div class="wrapper">
-		<form action="loguin/log" method="post">
-			<p>Nombre:</p>
-			<input type='text' name='nombreId'>
-			<p>Contraseña:</p>
-			<input type='text' name='contraseña'>
-
-			<input type='submit' value='Enviar'>
+		<div class="header">
+			<div class="nav">
+				<div class="logo">
+					<div class="titular">
+						<a href="/"> <img src="../images/titulo.png" alt="BasketoGo" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<form action="/login" method="post">
+			<label>User Name:</label><input type="text" name="username" /><br />
+			<label>Password:</label><input type="password" name="password" /><br />
+			<input type="submit" value="Sign In" /><br /> <input type="hidden"
+				name="_csrf" value="{{token}}" />
 		</form>
-		<a href="registro.html">Registro</a>
 		
+		Acceder como <a href="/invitado">invitado!</a>
+		Registrarse <a href="/registro"></a>
+		{{#mensaje}}
+		<h2 style="color: white;">{{mensaje}}</h2>
+		{{/mensaje}}
+
 	</div>
 </body>
 </html>

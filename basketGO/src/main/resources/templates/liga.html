@@ -5,7 +5,7 @@
 <title>BasketGO</title>
 <meta name="description" content="BasketGo" />
 <!-- STYLE SHEETS -->
-<link rel="stylesheet" href="../resources/static/css/style.css" />
+<link rel="stylesheet" href="../css/style.css" />
 <!-- GOOGLE FONTS -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'
 	rel='stylesheet' type='text/css'>
@@ -17,21 +17,33 @@
 			<div class="nav">
 				<div class="logo">
 					<div class="titular">
-						<a href="index.html"> <img src="../static/images/titulo.png"
+						<a href="/"> <img src="../images/titulo.png"
 							alt="BasketoGo" />
 						</a>
 					</div>
 				</div>
 				<div class="menu">
 					<ul>
-						<li rel="Liga"><a href="Liga.html">Ligas</a></li>
-						<li rel="Equipos"><a href="Equipos.html">Equipos</a></li>
-						<li rel="Jugadores"><a href="Jugadores.html">Jugadores</a></li>
-						<li rel="Registro"><a href="Registro.html">Registro</a></li>
+						<li rel="Liga"><a href="/liga">Ligas</a></li>
+						<li rel="Equipos"><a href="/equipos">Equipos</a></li>
+						<li rel="Jugadores"><a href="/jugadores">Jugadores</a></li>
 
 					</ul>
 				</div>
 			</div>
+		{{#admin}}
+		<form action="/liga/creacion" method="get">
+		<input type='submit' value='Crear Liga'>
+		</form><form action="/liga/gestion" method="get">
+		<input type='submit' value='Gestionar Liga'>
+		</form><form action="/liga/anadir" method="get">
+		<input type='submit' value='Añadir Equipos Liga'>
+		</form>
+		{{/admin}}
+
+		{{#clasificacionliga}}
+		<li style="color: white;">|Nombre: {{nombreEquipo}} |Puntos: {{puntuacion}} |Victorias: {{numeroVictorias}} |Derrotas: {{numeroDerrotas}}</li>
+		{{/clasificacionliga}}
 
 		</div>
 	</div>

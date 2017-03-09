@@ -1,5 +1,7 @@
 package es.sidelab.urjc;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 //import org.springframework.stereotype.Component;
@@ -9,65 +11,70 @@ import org.springframework.web.context.annotation.SessionScope;
 @Entity
 @SessionScope
 public class Usuario {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
-	private long id;
-	
-	private boolean administrador;
-	private String nombreId;
-	private String contraseña;
-	@OneToOne
-	private Equipo equipo;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String passwordHash;
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
+
+	private String nombre;
+	private String nombreEquipo;
+
 	public Usuario() {
-		
-	}
-	
 
-	public Usuario(String nombreId, String contraseña) {
-		this.nombreId = nombreId;
-		this.contraseña = contraseña;
 	}
 
+	public Usuario(String nombre, String passwordHash) {
+		this.nombre = nombre;
+		this.passwordHash = passwordHash;
+	}
 
-	public Usuario(Boolean administrador, String nombreId, String contraseña, Equipo equipo) {
-		this.administrador = administrador;
-		this.nombreId = nombreId;
-		this.contraseña = contraseña;
-		this.equipo = equipo;
+	public Usuario(Boolean administrador, String nombre, String passwordHash, String nombreEquipo) {
+		this.nombre = nombre;
+		this.passwordHash = passwordHash;
+		this.nombreEquipo = nombreEquipo;
 	}
-	
-	public Boolean getAdministrador() {
-		return administrador;
+
+
+	public String getPasswordHash() {
+		return passwordHash;
 	}
-	
-	public void setAdministrador(Boolean administrador) {
-		this.administrador = administrador;
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
-	
-	public String getNombreId() {
-		return nombreId;
+
+	public List<String> getRoles() {
+		return roles;
 	}
-	
-	public void setNombreId(String nombreId) {
-		this.nombreId = nombreId;
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
-	
-	public String getContraseña() {
-		return contraseña;
+
+	public String getNombre() {
+		return nombre;
 	}
-	
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	
-	public Equipo getEquipo() {
-		return equipo;
+
+	public String getpasswordHash() {
+		return passwordHash;
 	}
-	
-	public void setEquipo(Equipo equipo) {
-		this.equipo = equipo;
+
+	public void setpasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
-	
+
+	public String getNombreEquipo() {
+		return nombreEquipo;
+	}
+
+	public void setNombreEquipo(String nombreEquipo) {
+		this.nombreEquipo = nombreEquipo;
+	}
+
 }
