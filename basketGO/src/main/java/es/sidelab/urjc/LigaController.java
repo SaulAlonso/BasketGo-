@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,13 +47,18 @@ public class LigaController {
 		
 	}*/
 	@GetMapping("/liga")
-	public String creandoLiga(Model model){
+	public String creandoLiga(Model model, HttpServletRequest request, HttpSession session){
+		//model.addAttribute("superadmin", (boolean)session.getAttribute("superadmin"));
+	//	model.addAttribute("admin", (boolean)session.getAttribute("admin"));
 		return "preliga";
 	}
 	
 	
-	@PostMapping("/liga/clasificacion") 
-	public String ligaClasificacion(Model model, @RequestParam String nombreLiga){
+	@GetMapping("/liga/clasificacion") 
+	public String ligaClasificacion(Model model, /*HttpServletRequest request,*/
+			@RequestParam String nombreLiga){
+		/*model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));*/
 		List<Liga> listaLigas = liga.findByNombre(nombreLiga);
 		Clasificacion clasificacionAux;
 		if(listaLigas.size()>0){
@@ -66,15 +73,20 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/creacion") 
-	public String creacionLiga(Model model){
+	public String creacionLiga(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		boolean creaLiga = true;
 		model.addAttribute("creacionliga", creaLiga);
 		return "creacionliga";
 	}
 	
 	@PostMapping("/liga/creando") 
-	public String creandoLiga(Model model, @RequestParam String nombreLiga, 
-			@RequestParam String nombreEquipo1, @RequestParam String nombreEquipo2){
+	public String creandoLiga(Model model, HttpServletRequest request,
+			@RequestParam String nombreLiga, @RequestParam String nombreEquipo1,
+			@RequestParam String nombreEquipo2){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		boolean creaLiga = true;
 		String mensaje = "";
 		if(nombreLiga==""){
@@ -165,16 +177,20 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/gestion") 
-	public String gestionLiga(Model model){
+	public String gestionLiga(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		boolean gestionarliga = true;
 		model.addAttribute("gestionarliga", gestionarliga);
 		return "gestionarliga";
 	}
 	
 	@PostMapping("/liga/gestionando") 
-	public String gestionandoLiga(Model model, @RequestParam String nombreLiga, 
-			@RequestParam String nombreEquipo, @RequestParam String victoriasEquipo,
-			@RequestParam String derrotasEquipo){
+	public String gestionandoLiga(Model model, HttpServletRequest request,
+			@RequestParam String nombreLiga, @RequestParam String nombreEquipo,
+			@RequestParam String victoriasEquipo, @RequestParam String derrotasEquipo){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		boolean gestionarliga = true;
 		String mensaje = "";
 		if(nombreLiga==""){
@@ -239,15 +255,20 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/anadir") 
-	public String anadirEquipoLiga(Model model){
+	public String anadirEquipoLiga(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		boolean anadirequipoliga = true;
 		model.addAttribute("anadirequipoliga", anadirequipoliga);
 		return "anadirequipoliga";
 	}
 	
 	@PostMapping("/liga/anadiendo") 
-	public String anadiendoEquipoLiga(Model model, @RequestParam String nombreLiga, 
-			@RequestParam String nombreEquipo1, @RequestParam String nombreEquipo2){
+	public String anadiendoEquipoLiga(Model model, HttpServletRequest request,
+			@RequestParam String nombreLiga, @RequestParam String nombreEquipo1,
+			@RequestParam String nombreEquipo2){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
 		boolean anadirequipoliga = true;
 		String mensaje = "";
 		if(nombreLiga==""){

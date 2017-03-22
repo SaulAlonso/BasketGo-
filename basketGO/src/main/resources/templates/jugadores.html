@@ -31,10 +31,18 @@
 					</ul>
 				</div>
 			</div>
-			
+		
+		{{#superadmin}}				
 		<form action="/jugadores/creacion" method="get">
 		<input type='submit' value='Registrar Jugador'>
 		</form>
+		{{/superadmin}}	
+		
+		{{#manager}}	
+		<form action="/jugadores/creacion" method="get">
+		<input type='submit' value='Registrar Jugador'>
+		</form>
+		{{/manager}}
 		
 		{{#listaJugadores}}
 		<li style="color: white;">Nombre: {{nombre}}</li>

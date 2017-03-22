@@ -2,6 +2,8 @@ package es.sidelab.urjc;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ public class BasketController {
 	
 	
 	@GetMapping("/")
-	public String paginaPrincipal(Model model, HttpSession session){
+	public String paginaPrincipal(Model model, HttpServletRequest request, HttpSession session){
 		
 		if(session.isNew()){
 			session.setAttribute("logueado", false);
@@ -23,23 +25,48 @@ public class BasketController {
 		}if(!(boolean)session.getAttribute("logueado")){
 			return "loguin";
 		}
-		model.addAttribute("bienvenida",true);
 		model.addAttribute("usuario", (String)session.getAttribute("usuario"));
 		return "index";
 		
 	}
-	@PostMapping("/loged") 
-	public String paginaJugadores(Model model, HttpSession session,
-			@RequestParam String nombreUsuario){
-		if(nombreUsuario.isEmpty()){
-			model.addAttribute("mensaje","El nombre no puede estar vacío");
-			return "loguin";
-		}
-		session.setAttribute("usuario", nombreUsuario);
+	@GetMapping("/loguin")
+	public String loguin() {
+	
+		return "loguin";
+		
+	}
+	
+	@GetMapping("/postloguin")
+	public String postloguin(Model model, HttpServletRequest request, HttpSession session) {
+		
+		session.setAttribute("bienvenida",true);
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("superadmin", request.isUserInRole("ROLE_SUPERADMIN"));
+		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		session.setAttribute("logueado", true);
-		model.addAttribute("bienvenida",true);
-		model.addAttribute("usuario", (String)session.getAttribute("usuario"));
+		return "index";
+		
+	}
+	
+	@GetMapping("/loguinerror")
+	public String loguinerror(Model model) {
+	
+		return "loguinerror";
+		
+	}
+	
+	@GetMapping("/invitado")
+	public String invitado(Model model, HttpSession session){
+		
+		model.addAttribute("invitado",(String)session.getAttribute("invitado"));
 		return "index";
 	}
+	
+	@GetMapping("/registro")
+	public String registro(Model model, HttpSession session){
+		return "registro";
+	}
+	
 
 }

@@ -32,11 +32,19 @@
 				</div>
 			</div>
 			
+		{{#superadmin}}
 		<form action="/jugadores/creacion" method="get">
 		<input type='submit' value='Registrar Jugador'>
 		</form>
+		{{/superadmin}}
+			
+		{{#manager}}
+		<form action="/jugadores/creacion" method="get">
+		<input type='submit' value='Registrar Jugador'>
+		</form>
+		{{/manager}}
 		
-		<form action="/jugadores/porNombre" method="post">
+		<form action="/jugadores/porNombre" method="get">
 			<h2 style="color: white;">Nombre Jugador:</h2>
 			<input type='text' name='nombreJugador'>
 			
