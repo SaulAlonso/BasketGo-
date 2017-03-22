@@ -31,8 +31,11 @@
 
 		</div>
 		{{#bienvenida}}
-		<h1 style="color: white;">¡Bienvenido {{usuario}}!</h1>
+		<h1 style="color: white;">¡Bienvenido !</h1>
 		{{/bienvenida}}
+		{{#superadmin}}
+		<h1 style="color: white;">Superadmin</h1>
+		{{/superadmin}}
 		{{#logueado}}
 		<h2 style="color: white;">{{nombreId}}</h2>
 		{{/logueado}}

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,12 +30,17 @@ public class EquipoController {
 	}
 	
 	@GetMapping("/equipos")
-	public String creandoEquipo(Model model){
+	public String creandoEquipo(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		return "preequipo";
 	}
 	
-	@RequestMapping("/equipos/porNombre") 
-	public String paginaEquipos(Model model, @RequestParam String nombreEquipo){
+	@GetMapping("/equipos/porNombre") 
+	public String paginaEquipos(Model model, HttpServletRequest request,
+			@RequestParam String nombreEquipo){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		List<Equipo> listaEquipos = equipo.findByNombreEquipo(nombreEquipo);
 		if(listaEquipos.size()>0){
 			model.addAttribute("listaequipos", listaEquipos);
@@ -46,15 +52,19 @@ public class EquipoController {
 	}
 	
 	@GetMapping("/equipos/creacion") 
-	public String creacionEquipo(Model model){
+	public String creacionEquipo(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		boolean creaEquipo = true;
 		model.addAttribute("creacionequipo", creaEquipo);
 		return "creacionequipo";
 	}
 	
 	@PostMapping("/equipos/registro") 
-	public String creandoEquipo(Model model, @RequestParam String nombreEquipo, 
-			@RequestParam String jugadores){
+	public String creandoEquipo(Model model, HttpServletRequest request, 
+			@RequestParam String nombreEquipo, @RequestParam String jugadores){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		boolean creaEquipo = true;
 		String mensaje = "";
 		String[] nombreJugadores= {"","","","",""};

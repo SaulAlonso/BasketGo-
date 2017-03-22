@@ -6,6 +6,8 @@ import java.util.List;
 //import java.util.List;
 
 import javax.annotation.PostConstruct;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,12 +32,17 @@ public class JugadorController {
 	}
 	
 	@GetMapping("/jugadores")
-	public String creandoJugadores(Model model){
+	public String creandoJugadores(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		return "prejugador";
 	}
 	
-	@RequestMapping("/jugadores/porNombre")
-	public String paginaJugadoresPorNombre(Model model, @RequestParam String nombreJugador){
+	@GetMapping("/jugadores/porNombre")
+	public String paginaJugadoresPorNombre(Model model, HttpServletRequest request,
+			@RequestParam String nombreJugador){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		List<Jugador> listaJugadores = jugador.findByNombre(nombreJugador);
 		if(listaJugadores.size()>0){
 			model.addAttribute("etiqueta", "Nombre Jugador - Altura");
@@ -48,15 +55,20 @@ public class JugadorController {
 	}
 	
 	@GetMapping("/jugadores/creacion") 
-	public String creacionJugador(Model model){
+	public String creacionJugador(Model model, HttpServletRequest request){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		boolean creaLiga = true;
 		model.addAttribute("jugadorcreacion", creaLiga);
 		return "creacionjugador";
 	}
 	
 	@PostMapping("/jugadores/registro") 
-	public String creandoJugadores(Model model, @RequestParam String nombreJugador, 
-			@RequestParam String alturaJugador, @RequestParam String edadJugador){
+	public String creandoJugadores(Model model, HttpServletRequest request,
+			@RequestParam String nombreJugador, @RequestParam String alturaJugador,
+			@RequestParam String edadJugador){
+		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
+		model.addAttribute("manager", request.isUserInRole("MANAGER"));
 		boolean creaLiga = true;
 		String mensaje = "";
 		if(nombreJugador==""){
