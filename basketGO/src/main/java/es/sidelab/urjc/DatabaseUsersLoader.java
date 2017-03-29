@@ -14,7 +14,8 @@ public class DatabaseUsersLoader {
 	
 	@PostConstruct
 	private void initDatabase() {
-		/*userRepository.save(new Usuario("user","pass","ROLE_SUPERADMIN"));
-		userRepository.save(new Usuario("admin","adminpass","ROLE_ADMIN"));*/
+		/*userRepository.save(new Usuario("user","pass","ROLE_ADMIN"));
+		userRepository.save(new Usuario("admin","adminpass","ROLE_USER"));
+		userRepository.save(new Usuario("superadmin","superpass","ROLE_ADMIN", "ROLE_USER"));*/
 	}
 }

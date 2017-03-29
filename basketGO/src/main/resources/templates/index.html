@@ -31,14 +31,20 @@
 
 		</div>
 		{{#bienvenida}}
-		<h1 style="color: white;">¡Bienvenido !</h1>
+		<h1 style="color: white;">¡Bienvenido!</h1>
 		{{/bienvenida}}
-		{{#superadmin}}
-		<h1 style="color: white;">Superadmin</h1>
-		{{/superadmin}}
+		
+		{{#nologueado}}
+		<h1 style="color: white;"><a href=/postlogin>Log In</a></h1>
+		{{/nologueado}}
 		{{#logueado}}
-		<h2 style="color: white;">{{nombreId}}</h2>
+		<form action="/logout" method="post">
+		<input type="submit" value="Sign Out" />
+		<input type="hidden" name="_csrf" value="{{token}}"/>
+		</form>
 		{{/logueado}}
+		
+		
 	</div>
 </body>
 </html>

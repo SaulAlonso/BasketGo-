@@ -6,15 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -28,37 +24,35 @@ public class LigaController {
 	private ClasificacionRepository clasificacion;
 	@Autowired
 	private EquipoRepository equipo;
-/*	@Autowired
-	private JugadorRepository jugador;*/
-	@Autowired
-	private UsuarioRepository usuario;
 	
 	@PostConstruct
 	public void init(){
 		
 	}
 	
-/*	@RequestMapping("/liga/clasificacion/")
-	public List<Equipo> clasificacionLiga(String nombre){
-		
-		List<Equipo> equiposClasificacion = liga.findByNombre("Liga1").getClasificacion().getListaClasificacion();
-		
-		return equiposClasificacion;
-		
-	}*/
 	@GetMapping("/liga")
-	public String creandoLiga(Model model, HttpServletRequest request, HttpSession session){
-		//model.addAttribute("superadmin", (boolean)session.getAttribute("superadmin"));
-	//	model.addAttribute("admin", (boolean)session.getAttribute("admin"));
+	public String creandoLiga(Model model, HttpSession session){
+
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		return "preliga";
 	}
 	
 	
 	@GetMapping("/liga/clasificacion") 
-	public String ligaClasificacion(Model model, /*HttpServletRequest request,*/
+	public String ligaClasificacion(Model model, HttpSession session,
 			@RequestParam String nombreLiga){
-		/*model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));*/
+		
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		List<Liga> listaLigas = liga.findByNombre(nombreLiga);
 		Clasificacion clasificacionAux;
 		if(listaLigas.size()>0){
@@ -73,20 +67,28 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/creacion") 
-	public String creacionLiga(Model model, HttpServletRequest request){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+	public String creacionLiga(Model model, HttpSession session){
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean creaLiga = true;
 		model.addAttribute("creacionliga", creaLiga);
 		return "creacionliga";
 	}
 	
-	@PostMapping("/liga/creando") 
-	public String creandoLiga(Model model, HttpServletRequest request,
+	@GetMapping("/liga/creando") 
+	public String creandoLiga(Model model, HttpSession session,
 			@RequestParam String nombreLiga, @RequestParam String nombreEquipo1,
 			@RequestParam String nombreEquipo2){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean creaLiga = true;
 		String mensaje = "";
 		if(nombreLiga==""){
@@ -177,20 +179,28 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/gestion") 
-	public String gestionLiga(Model model, HttpServletRequest request){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+	public String gestionLiga(Model model, HttpSession session){
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean gestionarliga = true;
 		model.addAttribute("gestionarliga", gestionarliga);
 		return "gestionarliga";
 	}
 	
-	@PostMapping("/liga/gestionando") 
-	public String gestionandoLiga(Model model, HttpServletRequest request,
+	@GetMapping("/liga/gestionando") 
+	public String gestionandoLiga(Model model, HttpSession session,
 			@RequestParam String nombreLiga, @RequestParam String nombreEquipo,
 			@RequestParam String victoriasEquipo, @RequestParam String derrotasEquipo){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean gestionarliga = true;
 		String mensaje = "";
 		if(nombreLiga==""){
@@ -255,20 +265,28 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/anadir") 
-	public String anadirEquipoLiga(Model model, HttpServletRequest request){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+	public String anadirEquipoLiga(Model model, HttpSession session){
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean anadirequipoliga = true;
 		model.addAttribute("anadirequipoliga", anadirequipoliga);
 		return "anadirequipoliga";
 	}
 	
-	@PostMapping("/liga/anadiendo") 
-	public String anadiendoEquipoLiga(Model model, HttpServletRequest request,
+	@GetMapping("/liga/anadiendo") 
+	public String anadiendoEquipoLiga(Model model, HttpSession session,
 			@RequestParam String nombreLiga, @RequestParam String nombreEquipo1,
 			@RequestParam String nombreEquipo2){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("admin", request.isUserInRole("ADMIN"));
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean anadirequipoliga = true;
 		String mensaje = "";
 		if(nombreLiga==""){

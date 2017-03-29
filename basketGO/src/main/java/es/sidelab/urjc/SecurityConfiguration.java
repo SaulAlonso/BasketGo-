@@ -20,37 +20,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	 // Public pages
 	 http.authorizeRequests().antMatchers("/").permitAll();
-	 http.authorizeRequests().antMatchers("/equipo").permitAll();
-	 http.authorizeRequests().antMatchers("/index").permitAll();
-	 http.authorizeRequests().antMatchers("/jugadores").permitAll();
-	 http.authorizeRequests().antMatchers("/registro").permitAll();
-	 http.authorizeRequests().antMatchers("/liga").permitAll();
-	 http.authorizeRequests().antMatchers("/liga/clasificacion").permitAll();
 	 http.authorizeRequests().antMatchers("/loguin").permitAll();
 	 http.authorizeRequests().antMatchers("/loguinerror").permitAll();
 	 http.authorizeRequests().antMatchers("/logout").permitAll();
-	 http.authorizeRequests().antMatchers("/registrado").permitAll();
-	 http.authorizeRequests().antMatchers("/registro").permitAll();
+	 http.authorizeRequests().antMatchers("/equipo").permitAll();
+	 http.authorizeRequests().antMatchers("/equipos/porNombre").permitAll();
+	 http.authorizeRequests().antMatchers("/jugadores").permitAll();
+	 http.authorizeRequests().antMatchers("/jugadores/porNombre").permitAll();
+	 http.authorizeRequests().antMatchers("/liga").permitAll();
+	 http.authorizeRequests().antMatchers("/liga/clasificacion").permitAll();
 	 
 	 // Private pages (all other pages)
-	 http.authorizeRequests().antMatchers("/jugadores/creacion").hasAnyRole("SUPERADMIN","MANAGER");
-	 http.authorizeRequests().antMatchers("/jugadores/registro").hasAnyRole("SUPERADMIN","MANAGER");
-	 http.authorizeRequests().antMatchers("/equipos/creacion").hasAnyRole("SUPERADMIN","MANAGER");
-	 http.authorizeRequests().antMatchers("/equipos/registro").hasAnyRole("SUPERADMIN","MANAGER");
-	 http.authorizeRequests().antMatchers("/liga/creacion").hasAnyRole("SUPERADMIN","ADMIN");
-	 http.authorizeRequests().antMatchers("/liga/creando").hasAnyRole("SUPERADMIN","ADMIN");
-	 http.authorizeRequests().antMatchers("/liga/gestion").hasAnyRole("SUPERADMIN","ADMIN");
-	 http.authorizeRequests().antMatchers("/liga/gestionando").hasAnyRole("SUPERADMIN","ADMIN");
-	 http.authorizeRequests().antMatchers("/liga/anadir").hasAnyRole("SUPERADMIN","ADMIN");
-	 http.authorizeRequests().antMatchers("/liga/anadiendo").hasAnyRole("SUPERADMIN","ADMIN");
+	 http.authorizeRequests().antMatchers("/postlogin").hasAnyRole("USER","ADMIN");
+	 http.authorizeRequests().antMatchers("/jugadores/creacion").hasAnyRole("USER");
+	 http.authorizeRequests().antMatchers("/jugadores/registro").hasAnyRole("USER");
+	 http.authorizeRequests().antMatchers("/equipos/creacion").hasAnyRole("USER");
+	 http.authorizeRequests().antMatchers("/equipos/registro").hasAnyRole("USER");
+	 http.authorizeRequests().antMatchers("/liga/creacion").hasAnyRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/liga/creando").hasAnyRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/liga/gestion").hasAnyRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/liga/gestionando").hasAnyRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/liga/anadir").hasAnyRole("ADMIN");
+	 http.authorizeRequests().antMatchers("/liga/anadiendo").hasAnyRole("ADMIN");
 
 
 	 // Login form
-	 http.formLogin().loginPage("/loguin");
+	 http.formLogin().loginPage("/login");
 	 http.formLogin().usernameParameter("username");
 	 http.formLogin().passwordParameter("password");
-	 http.formLogin().defaultSuccessUrl("/postloguin");
-	 http.formLogin().failureUrl("/loguinerror");
+	 http.formLogin().defaultSuccessUrl("/postlogin");
+	 http.formLogin().failureUrl("/loginerror");
 	 // Logout
 	 http.logout().logoutUrl("/logout");
 	 http.logout().logoutSuccessUrl("/");
