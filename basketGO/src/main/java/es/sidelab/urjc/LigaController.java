@@ -1,6 +1,17 @@
 package es.sidelab.urjc;
 
+import java.awt.Desktop;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +23,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 
 @Controller
@@ -43,7 +63,8 @@ public class LigaController {
 	}
 	
 	
-	@GetMapping("/liga/clasificacion") 
+	@GetMapping("/liga/clasificacion")
+	
 	public String ligaClasificacion(Model model, HttpSession session,
 			@RequestParam String nombreLiga){
 		
@@ -65,6 +86,27 @@ public class LigaController {
 		model.addAttribute("mensaje", mensaje);
 		return "preliga";
 	}
+	
+	@GetMapping("/liga/topdf")
+	public ModelAndView get (Model model, @RequestParam String nombreLiga) 
+			throws RestClientException, URISyntaxException, IOException, DocumentException {               
+			 
+			
+			List<Article> articles = null;
+			
+			// METES LOS EQUIPOS EN ARTICLES CON EL FORMATO QUE TIENE
+			// - NombreEquipo
+			// - Puntos
+			// - Victorias
+			// - Derrotas
+			
+			// NO HACE FALTA NADA MÁS
+			
+			return new ModelAndView("pdfView", "articles", articles);
+			 
+	}
+	
+	
 	
 	@GetMapping("/liga/creacion") 
 	public String creacionLiga(Model model, HttpSession session){
