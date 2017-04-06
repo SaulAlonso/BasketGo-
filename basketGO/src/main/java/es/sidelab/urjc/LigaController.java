@@ -13,8 +13,11 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.commons.*;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +27,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import com.itextpdf.tool.xml.XMLWorkerHelper;
@@ -88,21 +101,91 @@ public class LigaController {
 	}
 	
 	@GetMapping("/liga/topdf")
-	public ModelAndView get (Model model, @RequestParam String nombreLiga) 
-			throws RestClientException, URISyntaxException, IOException, DocumentException {               
-			 
+	public String get (Model model, @RequestParam String nombreLiga){               
+		
+		if(nombreLiga.isEmpty()){
+			model.addAttribute("mensaje", "Debe introducir el nombre de la liga");
+			return "preliga";
+		}
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		String url="http://localhost:8080/verpdf/"+nombreLiga;
+		ObjectNode data = restTemplate.getForObject(url, ObjectNode.class);
+		
+		if(data==null){
+			model.addAttribute("mensaje", "No existe la Liga");
+			return "preliga";
+		}
+		
+		List<String> nombresEquipos = new ArrayList<String>();
+		List<String> puntosEquipos = new ArrayList<String>();
+		List<String> victoriasEquipos = new ArrayList<String>();
+		List<String> derrotasEquipos = new ArrayList<String>();
+		ArrayNode items = (ArrayNode) data.get("listaClasificacion");
+		
+		if(items.size()<1){
+			model.addAttribute("mensaje", "No existe la Liga");
+			return "preliga";
+		}
+		
+		for (int i = 0; i < items.size(); i++) {
+			JsonNode item = items.get(i);
+			String nombresEquipo = item.get("nombreEquipo").asText();
+			String puntosEquipo = ""+item.get("puntuacion").asInt();
+			String victoriasEquipo = ""+item.get("numeroVictorias").asInt();
+			String derrotasEquipo = ""+item.get("numeroDerrotas").asInt();
+			nombresEquipos.add(nombresEquipo);
+			puntosEquipos.add(puntosEquipo);
+			victoriasEquipos.add(victoriasEquipo);
+			derrotasEquipos.add(derrotasEquipo);
+		}
+	
+		try {
+		    Document document = new Document();
+		    try {
+		        PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/templates/pdf.pdf"));
+			} catch (FileNotFoundException fileNotFoundException) {
+			    System.out.println("No such file was found to generate the PDF "
+			            + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
+			}
+		document.open();
+		document.addTitle("Clasificación de "+nombreLiga);
+		document.addSubject("usando iText");
+		document.addKeywords("Java, PDF, iText");
+		document.addAuthor("BasketGO");
+		document.addCreator("BasketGO");
+	 
+	    // AQUÍ COMPLETAREMOS NUESTRO CÓDIGO PARA GENERAR EL PDF
+		
+		Chunk chunk = new Chunk("Clasificación "+nombreLiga);
+		Paragraph parrafo = new Paragraph(chunk);
+		document.add(parrafo);
+		
+		document.add(new Paragraph(""));
+		
+		PdfPTable tabla = new PdfPTable(4);
+		tabla.addCell("Nombre Equipo");
+		tabla.addCell("Puntos");
+		tabla.addCell("Victorias");
+		tabla.addCell("Derrotas");
+		for (int i = 0; i < nombresEquipos.size(); i++)
+		{
+			tabla.addCell(nombresEquipos.get(i));
+			tabla.addCell(puntosEquipos.get(i));
+			tabla.addCell(victoriasEquipos.get(i));
+			tabla.addCell(derrotasEquipos.get(i));
+		}
+		document.add(tabla);
+	 
+	    document.close();
+		} catch (DocumentException documentException) {
 			
-			List<Article> articles = null;
-			
-			// METES LOS EQUIPOS EN ARTICLES CON EL FORMATO QUE TIENE
-			// - NombreEquipo
-			// - Puntos
-			// - Victorias
-			// - Derrotas
-			
-			// NO HACE FALTA NADA MÁS
-			
-			return new ModelAndView("pdfView", "articles", articles);
+		}
+		
+		model.addAttribute("mensaje", "Se creó el pdf con éxito");
+			    
+		return "preliga";
 			 
 	}
 	

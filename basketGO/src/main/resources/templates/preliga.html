@@ -50,7 +50,14 @@
 			<input type='submit' value='Enviar'>
 		</form>
 		
-		<a href="rest/controller/get.pdf" class="label label-info">PDF</a>
+		<!-- <a href="/liga/topdf">DESCARAGAR PDF</a> -->
+		
+		<form action="/liga/topdf" method="get">
+			<h2 style="color: white;">Nombre Liga:</h2>
+			<input type='text' name='nombreLiga'>
+			<input type='submit' value='DESCARGAR PDF'>
+			
+		</form>
 		
 		{{#mensaje}}
 		<h2 style="color: white;">{{mensaje}}</h2>

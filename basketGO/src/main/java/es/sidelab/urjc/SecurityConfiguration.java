@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 http.authorizeRequests().antMatchers("/jugadores/porNombre").permitAll();
 	 http.authorizeRequests().antMatchers("/liga").permitAll();
 	 http.authorizeRequests().antMatchers("/liga/clasificacion").permitAll();
-	 //http.authorizeRequests().antMatchers("liga/toPdf").permitAll();
+	 http.authorizeRequests().antMatchers("liga/topdf").permitAll();
 	 
 	 // Private pages (all other pages)
 	 http.authorizeRequests().antMatchers("/postlogin").hasAnyRole("USER","ADMIN");
