@@ -32,17 +32,12 @@
 				</div>
 			</div>
 		
-		{{#manager}}	
+		{{#user}}	
 		<form action="/equipos/creacion" method="get">
 		<input type='submit' value='Registrar Equipo'>
 		</form>
-		{{/manager}}
+		{{/user}}
 
-		{{#superadmin}}	
-		<form action="/equipos/creacion" method="get">
-		<input type='submit' value='Registrar Equipo'>
-		</form>
-		{{/superadmin}}
 		{{#listaequipos}}
 		<li style="color: white;">Nombre: {{nombreEquipo}}</li>
 		{{/listaequipos}}

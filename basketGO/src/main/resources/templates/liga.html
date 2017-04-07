@@ -31,24 +31,25 @@
 					</ul>
 				</div>
 			</div>
-		{{#superadmin}}
-		<form action="/liga/creacion" method="get">
+		{{#admin}}<form action="/liga/creacion" method="get">
 		<input type='submit' value='Crear Liga'>
-		</form>{{/superadmin}}{{#admin}}<form action="/liga/creacion" method="get">
-		<input type='submit' value='Crear Liga'>
-		</form>{{/admin}}{{#superadmin}}<form action="/liga/gestion" method="get">
+		</form>
+		<form action="/liga/gestion" method="get">
 		<input type='submit' value='Gestionar Liga'>
-		</form>{{/superadmin}}{{#admin}}<form action="/liga/gestion" method="get">
-		<input type='submit' value='Gestionar Liga'>
-		</form>{{/admin}}{{#superadmin}}<form action="/liga/anadir" method="get">
+		</form>
+		<form action="/liga/anadir" method="get">
 		<input type='submit' value='Añadir Equipos Liga'>
-		</form>{{/superadmin}}{{#admin}}<form action="/liga/anadir" method="get">
-		<input type='submit' value='Añadir Equipos Liga'>
-		</form>{{/admin}}
+		</form>
+		{{/admin}}
 
 		{{#clasificacionliga}}
 		<li style="color: white;">|Nombre: {{nombreEquipo}} |Puntos: {{puntuacion}} |Victorias: {{numeroVictorias}} |Derrotas: {{numeroDerrotas}}</li>
+		{{#user}}
+		{{/user}}
 		{{/clasificacionliga}}
+		{{#haypdf}}
+    	
+		{{/haypdf}}
 
 		</div>
 	</div>

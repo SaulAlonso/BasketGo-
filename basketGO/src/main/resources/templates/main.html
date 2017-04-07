@@ -9,7 +9,7 @@
 	rel='stylesheet' type='text/css'>
 </head>
 
-<body>
+<body >
 	<div class="wrapper">
 		<div class="header">
 			<div class="nav">
@@ -30,8 +30,10 @@
 			</div>
 
 		</div>
-		<p>Usuario incorrecto</p>
-		<a href="/loguin">Intentar de nuevo</a>
+		{{#bienvenida}}
+		<h1 style="color: white;">¡Bienvenido!</h1>
+		{{/bienvenida}}
+		
 	</div>
 </body>
 </html>

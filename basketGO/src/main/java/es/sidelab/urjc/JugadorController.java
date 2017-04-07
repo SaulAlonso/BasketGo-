@@ -6,17 +6,13 @@ import java.util.List;
 //import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -32,17 +28,25 @@ public class JugadorController {
 	}
 	
 	@GetMapping("/jugadores")
-	public String creandoJugadores(Model model, HttpServletRequest request){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("manager", request.isUserInRole("MANAGER"));
+	public String creandoJugadores(Model model, HttpSession session){
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		return "prejugador";
 	}
 	
 	@GetMapping("/jugadores/porNombre")
-	public String paginaJugadoresPorNombre(Model model, HttpServletRequest request,
+	public String paginaJugadoresPorNombre(Model model, HttpSession session,
 			@RequestParam String nombreJugador){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("manager", request.isUserInRole("MANAGER"));
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		List<Jugador> listaJugadores = jugador.findByNombre(nombreJugador);
 		if(listaJugadores.size()>0){
 			model.addAttribute("etiqueta", "Nombre Jugador - Altura");
@@ -55,20 +59,28 @@ public class JugadorController {
 	}
 	
 	@GetMapping("/jugadores/creacion") 
-	public String creacionJugador(Model model, HttpServletRequest request){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("manager", request.isUserInRole("MANAGER"));
+	public String creacionJugador(Model model, HttpSession session){
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean creaLiga = true;
 		model.addAttribute("jugadorcreacion", creaLiga);
 		return "creacionjugador";
 	}
 	
-	@PostMapping("/jugadores/registro") 
-	public String creandoJugadores(Model model, HttpServletRequest request,
+	@GetMapping("/jugadores/registro") 
+	public String creandoJugadores(Model model, HttpSession session,
 			@RequestParam String nombreJugador, @RequestParam String alturaJugador,
 			@RequestParam String edadJugador){
-		model.addAttribute("superadmin", request.isUserInRole("SUPERADMIN"));
-		model.addAttribute("manager", request.isUserInRole("MANAGER"));
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("admin", (boolean) session.getAttribute("administrador"));
+		}
+		if((boolean) session.getAttribute("loged")){
+			model.addAttribute("user", (boolean) session.getAttribute("usuario"));
+		}
 		boolean creaLiga = true;
 		String mensaje = "";
 		if(nombreJugador==""){

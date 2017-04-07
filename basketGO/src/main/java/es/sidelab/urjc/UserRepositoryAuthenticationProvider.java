@@ -23,23 +23,23 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		Usuario usuario = usuarioRepository.findByNombre(auth.getName());
+		Usuario user = usuarioRepository.findByName(auth.getName());
 
-		if (usuario == null) {
+		if (user == null) {
 			throw new BadCredentialsException("usuario not found");
 		}
 
 		String password = (String) auth.getCredentials();
-		if (!new BCryptPasswordEncoder().matches(password, usuario.getPasswordHash())) {
+		if (!new BCryptPasswordEncoder().matches(password, user.getPasswordHash())) {
 			throw new BadCredentialsException("Wrong password");
 		}
 
 		List<GrantedAuthority> roles = new ArrayList<>();
-		for (String role : usuario.getRoles()) {
+		for (String role : user.getRoles()) {
 			roles.add(new SimpleGrantedAuthority(role));
 		}
 
-		return new UsernamePasswordAuthenticationToken(usuario.getNombre(), password, roles);
+		return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
 	}
 
 	@Override

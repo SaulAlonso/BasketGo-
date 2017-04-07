@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>BasketGO</title>
+<meta name="description" content="BasketGo" />
+<link rel="stylesheet" href="../css/style.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300'
+	rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div class="nav">
+				<div class="logo">
+					<div class="titular">
+						<a href="/"> <img src="../images/titulo.png"
+							alt="BasketoGo" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<form action="/login" method="post">
+			<label>User Name:</label><input type="text" name="username" /><br />
+			<label>Password:</label><input type="password" name="password" /><br />
+			<input type="submit" value="Sign In" /><br />
+			<input type="hidden" name="_csrf" value="{{token}}" />
+		</form>
+
+		{{#mensajeerror}}
+		<h1 style="color: white;">{{mensajeerror}}</h1>
+		{{/mensajeerror}}
+
+	</div>
+</body>
+</html>

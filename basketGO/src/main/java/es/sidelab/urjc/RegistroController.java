@@ -45,7 +45,7 @@ public class RegistroController {
 			return "registro";
 		}
 		
-		Usuario usuario1 = usuario.findByNombre(nombreUsuario);
+		Usuario usuario1 = usuario.findByName(nombreUsuario);
 		if(usuario1!=null){
 			mensaje = "El usuario ya está registrado";
 			model.addAttribute("mensaje", mensaje);

@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
 // @Component
 @Entity
-@SessionScope
+//@SessionScope
 public class Usuario {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String nombre;
-	private String elementoAsociado;
+	private String name;
 	
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String passwordHash;
@@ -31,22 +33,16 @@ public class Usuario {
 
 	}
 	
-	public Usuario(String nombre, String password, String... roles) {
-		this.nombre = nombre;
+	public Usuario(String name, String password, String... roles) {
+		this.name = name;
 		this.passwordHash = new BCryptPasswordEncoder().encode(password);
-		this.elementoAsociado = "";
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
-
-	public Usuario(Boolean administrador, String nombre, String password,
-			String elementoAsociado, String rol) {
-		this.nombre = nombre;
+	
+	public Usuario(String name, String password) {
+		this.name = name;
 		this.passwordHash = new BCryptPasswordEncoder().encode(password);
-		this.elementoAsociado = elementoAsociado;
-		this.roles = new ArrayList<>();
-		this.roles.add(rol);
 	}
-
 
 	public String getPasswordHash() {
 		return passwordHash;
@@ -63,12 +59,12 @@ public class Usuario {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getpasswordHash() {
@@ -77,14 +73,6 @@ public class Usuario {
 
 	public void setpasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
-	}
-	
-	public String getElementoAsociado() {
-		return elementoAsociado;
-	}
-	
-	public void setElementoAsociado(String elementoAsociado) {
-		this.elementoAsociado = elementoAsociado;
 	}
 
 }
