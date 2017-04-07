@@ -27,6 +27,7 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
 
 ## Servicio de la web:
 Permitirá descargar la clasificación de la liga seleccionada en formato PDF para su lectura offline.
+https://github.com/SaulAlonso/Backend-pdf-basketgo
 
 ## Capturas de pantalla
 Página de inicio/log
