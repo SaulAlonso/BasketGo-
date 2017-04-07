@@ -31,7 +31,11 @@ Permitirá descargar la clasificación de la liga seleccionada en formato PDF pa
 ## Capturas de pantalla
 Página de inicio/log
 ===
-<a href="http://es.tinypic.com?ref=bfn8kk" target="_blank"><img src="http://i67.tinypic.com/bfn8kk.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=2a6o36c" target="_blank"><img src="http://i66.tinypic.com/2a6o36c.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página post-login
+===
+<a href="http://es.tinypic.com?ref=330zfw3" target="_blank"><img src="http://i64.tinypic.com/330zfw3.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 Página principal 
 ===
@@ -57,9 +61,18 @@ Página registrar equipo
 ===
 <a href="http://es.tinypic.com?ref=200ptzm" target="_blank"><img src="http://i63.tinypic.com/200ptzm.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
-Página de las ligas 
+Página de las ligas-no logueado 
 ===
-<a href="http://es.tinypic.com?ref=35koraw" target="_blank"><img src="http://i65.tinypic.com/35koraw.jpg" border="0" alt="Image and video hosting by TinyPic"></a>===
+<a href="http://es.tinypic.com?ref=35koraw" target="_blank"><img src="http://i65.tinypic.com/35koraw.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página pdf generado
+===
+<a href="http://es.tinypic.com?ref=nr145g" target="_blank"><img src="http://i68.tinypic.com/nr145g.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página liga-logueado
+===
+<a href="http://es.tinypic.com?ref=ipbeqr" target="_blank"><img src="http://i64.tinypic.com/ipbeqr.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
 Página para registrar una liga nueva
 ===
 <a href="http://es.tinypic.com?ref=k2igt3" target="_blank"><img src="http://i65.tinypic.com/k2igt3.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
@@ -74,7 +87,7 @@ Ejemplo error buscar liga
 ===
 ## Diagrama UML
 ===
-<a href="http://es.tinypic.com?ref=1znmy6e" target="_blank"><img src="http://i65.tinypic.com/1znmy6e.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=b9gl1h" target="_blank"><img src="http://i63.tinypic.com/b9gl1h.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 ## Diagrama E/R
 ===
@@ -82,12 +95,52 @@ Ejemplo error buscar liga
 ===
 ## Diagrama de secuencia adicional
 ===
-<a href="http://es.tinypic.com?ref=345ok0h" target="_blank"><img src="http://i64.tinypic.com/345ok0h.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=6yzc4w" target="_blank"><img src="http://i64.tinypic.com/6yzc4w.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+## DESPLEGAR LA APLICACION EN AZURE
+
+Se genera un certificado:
+  openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout azureus.key -out azureus-cert.pem
+  
+Permisos a la clave privada:
+ chmod 0600 azureus.key
+ 
+Acceder a la maquina virtual con un cliente ssh
+ ssh azureus.key azureuser@ip publica
+ 
+Instalamos OpenJDK 8 JRE y mysql con los siguientes comandos:
+ sudo add-apt-repository ppa:openjdk-r/ppa
+ sudo apt-get update
+ sudo apt-get install openjdk-8-jre
+ sudo apt-get update
+ sudo apt-get install -y mysql -server
+
+Creamos la base de datos:
+ $ mysql -u root -p;
+ mysql> create database 'nombrebbdd';
+ mysql> create user 'user'@'localhost' identified by 'contraseña';
+ mysql> grant all privileges on <bbdd>.* to `usuario´@´%´;
+ mysql> flush privileges;
+ mysql> exit;
+ 
+Creamos el ejecutable desde spring con boton derecho run as-> maven install
+
+Subir el ejecutable desde nuestro equipo a la maquina virtual:
+
+ scp -i /path/to/azureus.key aplicacion.jar azureuser@<ip publica>:/home/azureuser/
+Acceder a la maquina virtual como ya hemos visto en el paso 4:
+
+Ejecutar la aplicacion desde la maquina virtual:
+
+java -jar aplicacion.jar
+Acceder via web a la aplicación:
+
+https://<ip publica>:<puerto publico>
 ===
 ## Integrantes del Proyecto:
 * Saúl Alonso Martín
   + Correo: s.alonsoma@alumnos.urjc.es
   + Github: SaulAlonso
 * Juan Carlos López De La Torre 
- + Correo: jc.lopezd@alumnos.urjc.es
- + Github: JuanCarlosLopezdeTorre
+  + Correo: jc.lopezd@alumnos.urjc.es
+  + Github: JuanCarlosLopezdeTorre
