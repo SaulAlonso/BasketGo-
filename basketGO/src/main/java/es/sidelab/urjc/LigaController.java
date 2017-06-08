@@ -53,7 +53,7 @@ import com.microsoft.azure.storage.blob.CloudBlobClient;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.microsoft.azure.storage.core.Base64;
- 
+
 
 @Controller
 public class LigaController {
@@ -153,14 +153,23 @@ public class LigaController {
 		    Document document = new Document();
 		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
             
-	    	PdfWriter.getInstance(document, baos);
+		    
+		    try {
+		        PdfWriter.getInstance(document, new FileOutputStream("pdf.pdf"));
+			} catch (FileNotFoundException fileNotFoundException) {
+			    System.out.println("No such file was found to generate the PDF "
+			            + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
+			}
+		    
+		    
+	    	//PdfWriter.getInstance(document, baos);
 	        //PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/templates/pdf.pdf"));
 		    
 		    /* Usar el ByteArrayOutputStream y luego usar el método 
 		     *  	uploadFromByteArray y así lo metemos to flapas en azure
 		     */
             
-            byte[] algo =  baos.toByteArray();
+            //byte[] algo =  baos.toByteArray();
             
             // La cadena es esta 
             //DefaultEndpointsProtocol=https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;EndpointSuffix=core.windows.net
@@ -207,10 +216,15 @@ public class LigaController {
 		    	
 		    	
 		    	
-		    	String storageConnectionString="DefaultEndpointsProtocol=https;" +
+		    	/*String storageConnectionString="DefaultEndpointsProtocol=https;" +
 		    							"AccountName=ficherospdf;" +
 		    							"AccountKey="+ encodedKey +
-		    							";EndpointSuffix=core.windows.net;";
+		    							";EndpointSuffix=core.windows.net;";*/
+		    	
+		    	String storageConnectionString="DefaultEndpointsProtocol=https;" +
+						"AccountName=ficherospdf;" +
+						"AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;" +
+						";EndpointSuffix=core.windows.net;";
 		    	
 				CloudStorageAccount account;
 				account = CloudStorageAccount.parse(storageConnectionString);
@@ -232,7 +246,9 @@ public class LigaController {
 	            // Upload a pdf file.
 	            CloudBlockBlob blob;
 				blob = container.getBlockBlobReference("pdf.pdf");
-	            blob.uploadFromByteArray(algo, 0, algo.length);
+	            //blob.uploadFromByteArray(algo, 0, algo.length);
+				File sourceFile = new File("pdf.pdf");
+				blob.upload(new FileInputStream(sourceFile), sourceFile.length());
 
 		    } catch (IOException IOException) {
 	            System.out.print("IOException encontrada: ");
