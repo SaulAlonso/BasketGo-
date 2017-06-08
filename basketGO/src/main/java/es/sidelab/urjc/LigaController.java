@@ -2,6 +2,7 @@ package es.sidelab.urjc;
 
 import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,6 +47,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import com.itextpdf.tool.xml.XMLWorkerHelper;
+import com.microsoft.azure.storage.CloudStorageAccount;
+import com.microsoft.azure.storage.StorageException;
+import com.microsoft.azure.storage.blob.CloudBlobClient;
+import com.microsoft.azure.storage.blob.CloudBlobContainer;
+import com.microsoft.azure.storage.blob.CloudBlockBlob;
+import com.microsoft.azure.storage.core.Base64;
 
 
 @Controller
@@ -143,42 +151,108 @@ public class LigaController {
 	
 		try {
 		    Document document = new Document();
-		    try {
-		        PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/templates/pdf.pdf"));
-			} catch (FileNotFoundException fileNotFoundException) {
-			    System.out.println("No such file was found to generate the PDF "
-			            + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
+		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            
+	    	PdfWriter.getInstance(document, baos);
+	        //PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/templates/pdf.pdf"));
+		    
+		    /* Usar el ByteArrayOutputStream y luego usar el método 
+		     *  	uploadFromByteArray y así lo metemos to flapas en azure
+		     */
+            
+            byte[] algo =  baos.toByteArray();
+            
+            // La cadena es esta 
+            //DefaultEndpointsProtocol=https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;EndpointSuffix=core.windows.net
+            
+            /* Fin de la cita XD */
+            
+			document.open();
+			document.addTitle("Clasificación de "+nombreLiga);
+			document.addSubject("usando iText");
+			document.addKeywords("Java, PDF, iText");
+			document.addAuthor("BasketGO");
+			document.addCreator("BasketGO");
+		 
+		    // AQUÍ COMPLETAREMOS NUESTRO CÓDIGO PARA GENERAR EL PDF
+			
+			Chunk chunk = new Chunk("Clasificación "+nombreLiga);
+			Paragraph parrafo = new Paragraph(chunk);
+			document.add(parrafo);
+			
+			document.add(new Paragraph(""));
+			
+			PdfPTable tabla = new PdfPTable(4);
+			tabla.addCell("Nombre Equipo");
+			tabla.addCell("Puntos");
+			tabla.addCell("Victorias");
+			tabla.addCell("Derrotas");
+			for (int i = 0; i < nombresEquipos.size(); i++)
+			{
+				tabla.addCell(nombresEquipos.get(i));
+				tabla.addCell(puntosEquipos.get(i));
+				tabla.addCell(victoriasEquipos.get(i));
+				tabla.addCell(derrotasEquipos.get(i));
 			}
-		document.open();
-		document.addTitle("Clasificación de "+nombreLiga);
-		document.addSubject("usando iText");
-		document.addKeywords("Java, PDF, iText");
-		document.addAuthor("BasketGO");
-		document.addCreator("BasketGO");
-	 
-	    // AQUÍ COMPLETAREMOS NUESTRO CÓDIGO PARA GENERAR EL PDF
-		
-		Chunk chunk = new Chunk("Clasificación "+nombreLiga);
-		Paragraph parrafo = new Paragraph(chunk);
-		document.add(parrafo);
-		
-		document.add(new Paragraph(""));
-		
-		PdfPTable tabla = new PdfPTable(4);
-		tabla.addCell("Nombre Equipo");
-		tabla.addCell("Puntos");
-		tabla.addCell("Victorias");
-		tabla.addCell("Derrotas");
-		for (int i = 0; i < nombresEquipos.size(); i++)
-		{
-			tabla.addCell(nombresEquipos.get(i));
-			tabla.addCell(puntosEquipos.get(i));
-			tabla.addCell(victoriasEquipos.get(i));
-			tabla.addCell(derrotasEquipos.get(i));
-		}
-		document.add(tabla);
-	 
-	    document.close();
+			document.add(tabla);
+		 
+		    document.close();
+		    
+		    try {
+		    	
+		    	// DefaultEndpointsProtocol=https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;EndpointSuffix=core.windows.net
+		    	
+		    	String storageKey="j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==";
+		    	String encodedKey=Base64.encode(storageKey.getBytes());
+		    	
+		    	
+		    	
+		    	String storageConnectionString="DefaultEndpointsProtocol=https;" +
+		    							"AccountName=ficherospdf;" +
+		    							"AccountKey="+ encodedKey +
+		    							";EndpointSuffix=core.windows.net;";
+		    	
+				CloudStorageAccount account;
+				account = CloudStorageAccount.parse(storageConnectionString);
+	            CloudBlobClient serviceClient = account.createCloudBlobClient();
+	            
+	            // Container name must be lower case.
+	            CloudBlobContainer container = serviceClient.getContainerReference("mispdf");
+	            boolean noexiste=false;
+	            
+	            noexiste=container.createIfNotExists();
+	            
+	            
+	            if(noexiste){
+	            	System.out.println("No existe");
+	            }else{
+	            	System.out.println("Si existe");
+	            }
+
+	            // Upload a pdf file.
+	            CloudBlockBlob blob;
+				blob = container.getBlockBlobReference("pdf.pdf");
+	            blob.uploadFromByteArray(algo, 0, algo.length);
+
+		    } catch (IOException IOException) {
+	            System.out.print("IOException encontrada: ");
+	            System.out.println(IOException.getMessage());
+		    } catch (StorageException storageException) {
+				// TODO Auto-generated catch block
+		    	System.out.print("storageException encontrada: ");
+		    	System.out.println(storageException.getMessage());
+		    	System.out.println(storageException.getExtendedErrorInformation());
+		    	storageException.printStackTrace();
+			} catch (URISyntaxException URISyntaxException) {
+				// TODO Auto-generated catch block
+				System.out.print("URISyntaxException encontrada: ");
+	            System.out.println(URISyntaxException.getMessage());
+			} catch (InvalidKeyException invalidKeyException) {
+				// TODO Auto-generated catch block
+				System.out.print("invalidKeyException encontrada: ");
+	            System.out.println(invalidKeyException.getMessage());
+			}
+		    
 		} catch (DocumentException documentException) {
 			
 		}
