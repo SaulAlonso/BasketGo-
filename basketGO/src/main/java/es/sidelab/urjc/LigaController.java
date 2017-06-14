@@ -102,7 +102,6 @@ public class LigaController {
 			model.addAttribute("clasificacionliga", clasificacionAux.getListaClasificacion());
 			return "liga";
 		}
-		//model.addAttribute("clasificacionliga", liga.findByNombre("Liga1").getClasificacion().getListaClasificacion());
 		String mensaje = "No existe la liga";
 		model.addAttribute("mensaje", mensaje);
 		return "preliga";
@@ -126,161 +125,18 @@ public class LigaController {
 			return "preliga";
 		}
 		
-		List<String> nombresEquipos = new ArrayList<String>();
-		List<String> puntosEquipos = new ArrayList<String>();
-		List<String> victoriasEquipos = new ArrayList<String>();
-		List<String> derrotasEquipos = new ArrayList<String>();
-		ArrayNode items = (ArrayNode) data.get("listaClasificacion");
+		JsonNode item = data.get("url");
 		
-		if(items.size()<1){
-			model.addAttribute("mensaje", "No existe la Liga");
-			return "preliga";
-		}
+		System.out.println(item);
 		
-		for (int i = 0; i < items.size(); i++) {
-			JsonNode item = items.get(i);
-			String nombresEquipo = item.get("nombreEquipo").asText();
-			String puntosEquipo = ""+item.get("puntuacion").asInt();
-			String victoriasEquipo = ""+item.get("numeroVictorias").asInt();
-			String derrotasEquipo = ""+item.get("numeroDerrotas").asInt();
-			nombresEquipos.add(nombresEquipo);
-			puntosEquipos.add(puntosEquipo);
-			victoriasEquipos.add(victoriasEquipo);
-			derrotasEquipos.add(derrotasEquipo);
-		}
-	
-		try {
-		    Document document = new Document();
-		    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            
-		    
-		    try {
-		        PdfWriter.getInstance(document, new FileOutputStream("pdf.pdf"));
-			} catch (FileNotFoundException fileNotFoundException) {
-			    System.out.println("No such file was found to generate the PDF "
-			            + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
-			}
-		    
-		    
-	    	//PdfWriter.getInstance(document, baos);
-	        //PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/templates/pdf.pdf"));
-		    
-		    /* Usar el ByteArrayOutputStream y luego usar el método 
-		     *  	uploadFromByteArray y así lo metemos to flapas en azure
-		     */
-            
-            //byte[] algo =  baos.toByteArray();
-            
-            // La cadena es esta 
-            //DefaultEndpointsProtocol=https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;EndpointSuffix=core.windows.net
-            
-            /* Fin de la cita XD */
-            
-			document.open();
-			document.addTitle("Clasificación de "+nombreLiga);
-			document.addSubject("usando iText");
-			document.addKeywords("Java, PDF, iText");
-			document.addAuthor("BasketGO");
-			document.addCreator("BasketGO");
-		 
-		    // AQUÍ COMPLETAREMOS NUESTRO CÓDIGO PARA GENERAR EL PDF
-			
-			Chunk chunk = new Chunk("Clasificación "+nombreLiga);
-			Paragraph parrafo = new Paragraph(chunk);
-			document.add(parrafo);
-			
-			document.add(new Paragraph(""));
-			
-			PdfPTable tabla = new PdfPTable(4);
-			tabla.addCell("Nombre Equipo");
-			tabla.addCell("Puntos");
-			tabla.addCell("Victorias");
-			tabla.addCell("Derrotas");
-			for (int i = 0; i < nombresEquipos.size(); i++)
-			{
-				tabla.addCell(nombresEquipos.get(i));
-				tabla.addCell(puntosEquipos.get(i));
-				tabla.addCell(victoriasEquipos.get(i));
-				tabla.addCell(derrotasEquipos.get(i));
-			}
-			document.add(tabla);
-		 
-		    document.close();
-		    
-		    try {
-		    	
-		    	// DefaultEndpointsProtocol=https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;EndpointSuffix=core.windows.net
-		    	
-		    	String storageKey="j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;https;AccountName=ficherospdf;AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==";
-		    	String encodedKey=Base64.encode(storageKey.getBytes());
-		    	
-		    	
-		    	
-		    	/*String storageConnectionString="DefaultEndpointsProtocol=https;" +
-		    							"AccountName=ficherospdf;" +
-		    							"AccountKey="+ encodedKey +
-		    							";EndpointSuffix=core.windows.net;";*/
-		    	
-		    	String storageConnectionString="DefaultEndpointsProtocol=https;" +
-						"AccountName=ficherospdf;" +
-						"AccountKey=j06O/hWQZnvc4va+B9d+ujUoCCTL6JHGZfNmhzAGMVm9r+25xh7jaeluKYyN/WTp1yqpYBW2/K6MeBNcuJEVsw==;" +
-						";EndpointSuffix=core.windows.net;";
-		    	
-				CloudStorageAccount account;
-				account = CloudStorageAccount.parse(storageConnectionString);
-	            CloudBlobClient serviceClient = account.createCloudBlobClient();
-	            
-	            // Container name must be lower case.
-	            CloudBlobContainer container = serviceClient.getContainerReference("mispdf");
-	            boolean noexiste=false;
-	            
-	            noexiste=container.createIfNotExists();
-	            
-	            
-	            if(noexiste){
-	            	System.out.println("No existe");
-	            }else{
-	            	System.out.println("Si existe");
-	            }
-
-	            // Upload a pdf file.
-	            CloudBlockBlob blob;
-				blob = container.getBlockBlobReference("pdf.pdf");
-	            //blob.uploadFromByteArray(algo, 0, algo.length);
-				File sourceFile = new File("pdf.pdf");
-				blob.upload(new FileInputStream(sourceFile), sourceFile.length());
-
-		    } catch (IOException IOException) {
-	            System.out.print("IOException encontrada: ");
-	            System.out.println(IOException.getMessage());
-		    } catch (StorageException storageException) {
-				// TODO Auto-generated catch block
-		    	System.out.print("storageException encontrada: ");
-		    	System.out.println(storageException.getMessage());
-		    	System.out.println(storageException.getExtendedErrorInformation());
-		    	storageException.printStackTrace();
-			} catch (URISyntaxException URISyntaxException) {
-				// TODO Auto-generated catch block
-				System.out.print("URISyntaxException encontrada: ");
-	            System.out.println(URISyntaxException.getMessage());
-			} catch (InvalidKeyException invalidKeyException) {
-				// TODO Auto-generated catch block
-				System.out.print("invalidKeyException encontrada: ");
-	            System.out.println(invalidKeyException.getMessage());
-			}
-		    
-		} catch (DocumentException documentException) {
-			
-		}
-		
-		model.addAttribute("mensaje", "Se creó el pdf con éxito");
+		model.addAttribute("hayurl", true);
+		model.addAttribute("url", item);
+		model.addAttribute("mensaje", "Se creó el pdf con éxito. ");
 			    
 		return "preliga";
 			 
 	}
-	
-	
-	
+
 	@GetMapping("/liga/creacion") 
 	public String creacionLiga(Model model, HttpSession session){
 		if((boolean) session.getAttribute("loged")){
