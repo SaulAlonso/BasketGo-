@@ -115,11 +115,14 @@ public class LigaController {
 			return "preliga";
 		}
 		
+		
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		String url="http://localhost:8080/verpdf/"+nombreLiga;
 		ObjectNode data = restTemplate.getForObject(url, ObjectNode.class);
 		
+		model.addAttribute("hayurl", false);
 		if(data==null){
 			model.addAttribute("mensaje", "No existe la Liga");
 			return "preliga";
@@ -274,6 +277,10 @@ public class LigaController {
 		}
 		boolean gestionarliga = true;
 		String mensaje = "";
+		
+		
+		
+		
 		if(nombreLiga==""){
 			mensaje = "El nombre de la Liga debe tener al menos un caracter";
 			model.addAttribute("gestionarliga", gestionarliga);
@@ -329,6 +336,8 @@ public class LigaController {
 		equipo1.get(0).setPuntuacion(vic-der);
 		equipo.save(equipo1.get(0));
 		mensaje="Clasificacion actualizada correctamente";
+		
+		
 		model.addAttribute("gestionarliga", gestionarliga);
 		model.addAttribute("mensaje", mensaje);					
 		return "gestionarliga";	

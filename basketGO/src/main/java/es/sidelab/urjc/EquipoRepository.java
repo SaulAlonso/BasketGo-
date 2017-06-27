@@ -11,5 +11,5 @@ public interface EquipoRepository extends JpaRepository<Equipo, Long> {
 	Page<Equipo> findAll(Pageable page);
 	Page<Equipo> findByNombreEquipo(String nombreEquipo, Pageable page);
 	List<Equipo> findByNombreEquipo(String nombre);
-
+	
 }

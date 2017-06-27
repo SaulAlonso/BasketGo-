@@ -31,27 +31,23 @@
 					</ul>
 				</div>
 			</div>
-			
-		{{#user}}
-		<form action="/jugadores/creacion" method="get">
-		<input type='submit' value='Registrar Jugador'>
-		</form>
-		<form action="/jugadores/preedicion" method="get">
-		<input type='submit' value='Editar Jugador'>
-		</form>
-		{{/user}}
 		
-		<form action="/jugadores/porNombre" method="get">
-			<h2 style="color: white;">Nombre Jugador:</h2>
+		{{#jugadoredicion}}
+		<form action="edicion" method="get">
+			<p style="color: white;">Nombre Jugador: </p>
 			<input type='text' name='nombreJugador'>
+			<p style="color: white;">Altura:</p>
+			<input type='text' name='alturaJugador'>
+			<p style="color: white;">Edad:</p>
+			<input type='text' name='edadJugador'>
 			
 			<input type='submit' value='Enviar'>
 		</form>
-		
+		{{/jugadoredicion}}
 		{{#mensaje}}
-		<h2 style="color: white;">{{mensaje}}</h2>
+		<h1 style="color: white;">{{mensaje}}</h1>
 		{{/mensaje}}
-		
+
 		</div>
 	</div>
 </body>
