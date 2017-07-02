@@ -76,7 +76,7 @@ Página de las ligas(no logueado)
 ===
 Página pdf generado
 ===
-<a href="http://es.tinypic.com?ref=nr145g" target="_blank"><img src="http://i68.tinypic.com/nr145g.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=nlzrc8" target="_blank"><img src="http://i65.tinypic.com/nlzrc8.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 Página liga (logueado)
 ===
