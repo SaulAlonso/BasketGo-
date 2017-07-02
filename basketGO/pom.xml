@@ -80,6 +80,14 @@
 			<artifactId>azure-storage</artifactId>
 			<version>5.2.0</version>
 		</dependency>
+		<dependency>
+		<groupId>org.springframework.session</groupId>
+		<artifactId>spring-session</artifactId>
+		</dependency>
+		<dependency>
+		<groupId>com.hazelcast</groupId>
+		<artifactId>hazelcast</artifactId>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>

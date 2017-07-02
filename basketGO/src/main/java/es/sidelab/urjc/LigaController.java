@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,6 +66,9 @@ public class LigaController {
 	private ClasificacionRepository clasificacion;
 	@Autowired
 	private EquipoRepository equipo;
+	
+	@Value("${basketGO.servicio-interno.ip}")
+	private String servicioInterno;
 	
 	@PostConstruct
 	public void init(){
@@ -119,7 +123,7 @@ public class LigaController {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		String url="http://localhost:8080/verpdf/"+nombreLiga;
+		String url=servicioInterno+"/verpdf/"+nombreLiga;
 		ObjectNode data = restTemplate.getForObject(url, ObjectNode.class);
 		
 		model.addAttribute("hayurl", false);

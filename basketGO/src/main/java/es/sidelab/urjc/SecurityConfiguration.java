@@ -1,6 +1,7 @@
 package es.sidelab.urjc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 //@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
+	@Value("${public.address}")
+	private String publicAdress;
 
     @Autowired
     public UserRepositoryAuthenticationProvider authenticationProvider;
@@ -29,10 +33,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 http.authorizeRequests().antMatchers("/jugadores/porNombre").permitAll();
 	 http.authorizeRequests().antMatchers("/liga").permitAll();
 	 http.authorizeRequests().antMatchers("/liga/clasificacion").permitAll();
-	 http.authorizeRequests().antMatchers("liga/topdf").permitAll();
+	 http.authorizeRequests().antMatchers("/liga/topdf").permitAll();
+	 http.authorizeRequests().antMatchers("/usuario").permitAll();
+	 http.authorizeRequests().antMatchers("/preusuarios").permitAll();
+	 http.authorizeRequests().antMatchers("/postlogin").permitAll();
 	 
 	 // Private pages (all other pages)
-	 http.authorizeRequests().antMatchers("/postlogin").hasAnyRole("USER","ADMIN");
+	// http.authorizeRequests().antMatchers("/postlogin").hasAnyRole("USER","ADMIN");
 	 http.authorizeRequests().antMatchers("/jugadores/creacion").hasAnyRole("USER");
 	 http.authorizeRequests().antMatchers("/jugadores/registro").hasAnyRole("USER");
 	 http.authorizeRequests().antMatchers("/equipos/creacion").hasAnyRole("USER");
@@ -49,11 +56,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 http.formLogin().loginPage("/login");
 	 http.formLogin().usernameParameter("username");
 	 http.formLogin().passwordParameter("password");
-	 http.formLogin().defaultSuccessUrl("/postlogin");
-	 http.formLogin().failureUrl("/loginerror");
+	 http.formLogin().defaultSuccessUrl("https://"+publicAdress+"/postlogin");
+	 http.formLogin().failureUrl("https://"+publicAdress+"/loginerror");
 	 // Logout
 	 http.logout().logoutUrl("/logout");
-	 http.logout().logoutSuccessUrl("/");
+	 http.logout().logoutSuccessUrl("https://"+publicAdress+"/");
 
 	 }
 	@Override
