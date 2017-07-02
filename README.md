@@ -111,10 +111,10 @@ Ejemplo error buscar liga
 <a href="http://es.tinypic.com?ref=157ovp1" target="_blank"><img src="http://i65.tinypic.com/157ovp1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 
 
-## Diagrama de secuencia adicional
+## Diagrama de secuencia
 
 
-<a href="http://es.tinypic.com?ref=6yzc4w" target="_blank"><img src="http://i64.tinypic.com/6yzc4w.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=107mg4y" target="_blank"><img src="http://i68.tinypic.com/107mg4y.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 
 
 ## DESPLEGAR LA APLICACION EN AZURE
