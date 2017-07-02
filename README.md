@@ -102,7 +102,7 @@ Ejemplo error buscar liga
 ## Diagrama UML
 
 
-<a href="http://es.tinypic.com?ref=b9gl1h" target="_blank"><img src="http://i63.tinypic.com/b9gl1h.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=2mdqikn" target="_blank"><img src="http://i64.tinypic.com/2mdqikn.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 
 
 ## Diagrama E/R
