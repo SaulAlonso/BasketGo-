@@ -13,8 +13,8 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
   + Detalles de cada partido (Equipos enfrentados, Liga a la que pertenecen, Resultado, Fecha).
 
 * Parte Privada: 
-  + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este será el      usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. Incluyendo tambien la creacion de citas en el calendario a la que los jugadores del equipo deberán asistir, y por consiguiente los jugadores podran visualizarlas una vez logueados.
-  + Se puede crear una lista de lesionados del equipo, la cual se podrá consultar para ver la fecha de vuelta del jugador.
+  + Cada jugador puede darse de alta en la web, y un usuario puede crear un equipo que represente a diferentes jugadores, este será el      usuario entrenador del equipo, se encargara de la inscripcion de jugadores o de inscribir al equipo en torneos. 
+  + Se podrán crear equipos a partir de jugadores existentes, y las ligas se crearan a partir de estos equipos.
   + Existira tambien un usuario administrador que creará los torneos y se encargará de su administración.
  
 ## Entidades Principales:
@@ -23,7 +23,7 @@ Esta aplicación se trata de una herramienta total para tu equipo, con ella se p
 * Equipo: Poseerá un nombre único, asi como sus victorias y derrotas y los jugadores inscritos.
 * Usuario: Existiendo dos tipos de usuarios como son el entrenador que será el encargado de crear el equipo asi como inscribir a cada uno de los jugadores en dicho equipo y el usuario administrador que encargará de la creación de liga.
 * Jugador: Contendrá las caracteristicas especificas como son nombre, altura edad y numero de ficha.
-* Partido: Se encarga de almacenar tanto los equipos,, la fecha, el resultado y su liga.
+* Partido: Se encarga de almacenar tanto los equipos, la fecha, el resultado y su liga.
 
 ## Servicio de la web:
 Permitirá descargar la clasificación de la liga seleccionada en formato PDF para su lectura offline.
@@ -34,6 +34,10 @@ Página de inicio/log
 ===
 <a href="http://es.tinypic.com?ref=2a6o36c" target="_blank"><img src="http://i66.tinypic.com/2a6o36c.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
+Página registrar usuario nuevo
+===
+<a href="http://es.tinypic.com?ref=2pzxlef" target="_blank"><img src="http://i67.tinypic.com/2pzxlef.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
 Página post-login
 ===
 <a href="http://es.tinypic.com?ref=330zfw3" target="_blank"><img src="http://i64.tinypic.com/330zfw3.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
@@ -42,13 +46,17 @@ Página principal
 ===
 <a href="http://es.tinypic.com?ref=eb7hwp" target="_blank"><img src="http://i68.tinypic.com/eb7hwp.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
-Página de jugadores 
+Página de jugadores (Logueado) 
 ===
 <a href="http://es.tinypic.com?ref=2uj2xkg" target="_blank"><img src="http://i66.tinypic.com/2uj2xkg.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 Página buscar jugadores
 ===
-<a href="http://es.tinypic.com?ref=29on12t" target="_blank"><img src="http://i68.tinypic.com/29on12t.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+<a href="http://es.tinypic.com?ref=1e9lkx" target="_blank"><img src="http://i65.tinypic.com/1e9lkx.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
+Página editar jugador (Logueado) 
+===
+<a href="http://es.tinypic.com?ref=1giog5" target="_blank"><img src="http://i66.tinypic.com/1giog5.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
 Página para buscar equipo
 ===
@@ -62,7 +70,7 @@ Página registrar equipo
 ===
 <a href="http://es.tinypic.com?ref=200ptzm" target="_blank"><img src="http://i63.tinypic.com/200ptzm.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
-Página de las ligas-no logueado 
+Página de las ligas(no logueado) 
 ===
 <a href="http://es.tinypic.com?ref=35koraw" target="_blank"><img src="http://i65.tinypic.com/35koraw.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
@@ -70,7 +78,7 @@ Página pdf generado
 ===
 <a href="http://es.tinypic.com?ref=nr145g" target="_blank"><img src="http://i68.tinypic.com/nr145g.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
-Página liga-logueado
+Página liga (logueado)
 ===
 <a href="http://es.tinypic.com?ref=ipbeqr" target="_blank"><img src="http://i64.tinypic.com/ipbeqr.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
@@ -86,18 +94,25 @@ Ejemplo error buscar liga
 ===
 <a href="http://es.tinypic.com?ref=qn7hp4" target="_blank"><img src="http://i68.tinypic.com/qn7hp4.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
+
 ## Diagrama UML
+
 ===
 <a href="http://es.tinypic.com?ref=b9gl1h" target="_blank"><img src="http://i63.tinypic.com/b9gl1h.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
+
 ## Diagrama E/R
+
 ===
 <a href="http://es.tinypic.com?ref=157ovp1" target="_blank"><img src="http://i65.tinypic.com/157ovp1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
+
 ## Diagrama de secuencia adicional
+
 ===
 <a href="http://es.tinypic.com?ref=6yzc4w" target="_blank"><img src="http://i64.tinypic.com/6yzc4w.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
+
 ## DESPLEGAR LA APLICACION EN AZURE
 
 Se genera un certificado:
