@@ -78,6 +78,10 @@ Página pdf generado
 ===
 <a href="http://es.tinypic.com?ref=nlzrc8" target="_blank"><img src="http://i65.tinypic.com/nlzrc8.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 ===
+Ejemplo pdf generado
+===
+<a href="http://es.tinypic.com?ref=20jrdyu" target="_blank"><img src="http://i64.tinypic.com/20jrdyu.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
+===
 Página liga (logueado)
 ===
 <a href="http://es.tinypic.com?ref=ipbeqr" target="_blank"><img src="http://i64.tinypic.com/ipbeqr.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
@@ -97,21 +101,21 @@ Ejemplo error buscar liga
 
 ## Diagrama UML
 
-===
+
 <a href="http://es.tinypic.com?ref=b9gl1h" target="_blank"><img src="http://i63.tinypic.com/b9gl1h.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-===
+
 
 ## Diagrama E/R
 
-===
+
 <a href="http://es.tinypic.com?ref=157ovp1" target="_blank"><img src="http://i65.tinypic.com/157ovp1.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-===
+
 
 ## Diagrama de secuencia adicional
 
-===
+
 <a href="http://es.tinypic.com?ref=6yzc4w" target="_blank"><img src="http://i64.tinypic.com/6yzc4w.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
-===
+
 
 ## DESPLEGAR LA APLICACION EN AZURE
 
