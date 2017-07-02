@@ -116,6 +116,9 @@ Ejemplo error buscar liga
 
 <a href="http://es.tinypic.com?ref=107mg4y" target="_blank"><img src="http://i68.tinypic.com/107mg4y.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 
+## Diagrama Azure
+
+<a href="http://es.tinypic.com?ref=24g56xf" target="_blank"><img src="http://i63.tinypic.com/24g56xf.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
 
 ## DESPLEGAR LA APLICACION EN AZURE
 
