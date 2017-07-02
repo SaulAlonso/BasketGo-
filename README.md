@@ -155,7 +155,7 @@ Ejecutar la aplicacion desde la maquina virtual:
 java -jar aplicacion.jar
 Acceder via web a la aplicación:
 
-https://<ip publica>:<puerto publico>
+https//52.166.61.73
 ===
 ## Integrantes del Proyecto:
 * Saúl Alonso Martín
