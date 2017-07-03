@@ -15,7 +15,7 @@ public class Liga {
 	
 	private String nombre;
 	
-	@OneToOne (cascade=CascadeType.ALL)
+	@OneToOne
 	private Clasificacion clasificacion;
 
 	public Liga() {

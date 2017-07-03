@@ -34,8 +34,10 @@
 		<h1 style="color: white;">¡Bienvenido!</h1>
 		{{/bienvenida}}
 		
+		<h1 style="color: white;"><a href=/preusuarios>Registrar Usuario</a></h1>
+		
 		{{#nologueado}}
-		<h1 style="color: white;"><a href=/postlogin>Log In</a></h1>
+		<h1 style="color: white;"><a href=login>Log In</a></h1>
 		{{/nologueado}}
 		{{#logueado}}
 		<form action="/logout" method="post">

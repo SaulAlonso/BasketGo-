@@ -17,7 +17,7 @@ public class Equipo {
 	private int puntuacion;
 	private int numeroDerrotas;
 	private int numeroVictorias;
-	@OneToMany (cascade=CascadeType.ALL)
+	@OneToMany
 	private List<Jugador> listaJugadores;
 	
 

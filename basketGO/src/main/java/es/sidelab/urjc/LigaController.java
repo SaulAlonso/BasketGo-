@@ -2,6 +2,7 @@ package es.sidelab.urjc;
 
 import java.awt.Desktop;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +48,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import com.itextpdf.tool.xml.XMLWorkerHelper;
+import com.microsoft.azure.storage.CloudStorageAccount;
+import com.microsoft.azure.storage.StorageException;
+import com.microsoft.azure.storage.blob.CloudBlobClient;
+import com.microsoft.azure.storage.blob.CloudBlobContainer;
+import com.microsoft.azure.storage.blob.CloudBlockBlob;
+import com.microsoft.azure.storage.core.Base64;
 
 
 @Controller
@@ -57,6 +66,9 @@ public class LigaController {
 	private ClasificacionRepository clasificacion;
 	@Autowired
 	private EquipoRepository equipo;
+	
+	@Value("${basketGO.servicio-interno.ip}")
+	private String servicioInterno;
 	
 	@PostConstruct
 	public void init(){
@@ -94,7 +106,6 @@ public class LigaController {
 			model.addAttribute("clasificacionliga", clasificacionAux.getListaClasificacion());
 			return "liga";
 		}
-		//model.addAttribute("clasificacionliga", liga.findByNombre("Liga1").getClasificacion().getListaClasificacion());
 		String mensaje = "No existe la liga";
 		model.addAttribute("mensaje", mensaje);
 		return "preliga";
@@ -108,89 +119,31 @@ public class LigaController {
 			return "preliga";
 		}
 		
+		
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		String url="http://localhost:8080/verpdf/"+nombreLiga;
+		String url=servicioInterno+"/verpdf/"+nombreLiga;
 		ObjectNode data = restTemplate.getForObject(url, ObjectNode.class);
 		
+		model.addAttribute("hayurl", false);
 		if(data==null){
 			model.addAttribute("mensaje", "No existe la Liga");
 			return "preliga";
 		}
 		
-		List<String> nombresEquipos = new ArrayList<String>();
-		List<String> puntosEquipos = new ArrayList<String>();
-		List<String> victoriasEquipos = new ArrayList<String>();
-		List<String> derrotasEquipos = new ArrayList<String>();
-		ArrayNode items = (ArrayNode) data.get("listaClasificacion");
+		JsonNode item = data.get("url");
 		
-		if(items.size()<1){
-			model.addAttribute("mensaje", "No existe la Liga");
-			return "preliga";
-		}
+		System.out.println(item);
 		
-		for (int i = 0; i < items.size(); i++) {
-			JsonNode item = items.get(i);
-			String nombresEquipo = item.get("nombreEquipo").asText();
-			String puntosEquipo = ""+item.get("puntuacion").asInt();
-			String victoriasEquipo = ""+item.get("numeroVictorias").asInt();
-			String derrotasEquipo = ""+item.get("numeroDerrotas").asInt();
-			nombresEquipos.add(nombresEquipo);
-			puntosEquipos.add(puntosEquipo);
-			victoriasEquipos.add(victoriasEquipo);
-			derrotasEquipos.add(derrotasEquipo);
-		}
-	
-		try {
-		    Document document = new Document();
-		    try {
-		        PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/templates/pdf.pdf"));
-			} catch (FileNotFoundException fileNotFoundException) {
-			    System.out.println("No such file was found to generate the PDF "
-			            + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
-			}
-		document.open();
-		document.addTitle("Clasificación de "+nombreLiga);
-		document.addSubject("usando iText");
-		document.addKeywords("Java, PDF, iText");
-		document.addAuthor("BasketGO");
-		document.addCreator("BasketGO");
-	 
-	    // AQUÍ COMPLETAREMOS NUESTRO CÓDIGO PARA GENERAR EL PDF
-		
-		Chunk chunk = new Chunk("Clasificación "+nombreLiga);
-		Paragraph parrafo = new Paragraph(chunk);
-		document.add(parrafo);
-		
-		document.add(new Paragraph(""));
-		
-		PdfPTable tabla = new PdfPTable(4);
-		tabla.addCell("Nombre Equipo");
-		tabla.addCell("Puntos");
-		tabla.addCell("Victorias");
-		tabla.addCell("Derrotas");
-		for (int i = 0; i < nombresEquipos.size(); i++)
-		{
-			tabla.addCell(nombresEquipos.get(i));
-			tabla.addCell(puntosEquipos.get(i));
-			tabla.addCell(victoriasEquipos.get(i));
-			tabla.addCell(derrotasEquipos.get(i));
-		}
-		document.add(tabla);
-	 
-	    document.close();
-		} catch (DocumentException documentException) {
-			
-		}
-		
-		model.addAttribute("mensaje", "Se creó el pdf con éxito");
+		model.addAttribute("hayurl", true);
+		model.addAttribute("url", item);
+		model.addAttribute("mensaje", "Se creó el pdf con éxito. ");
 			    
 		return "preliga";
 			 
 	}
-	
-	
-	
+
 	@GetMapping("/liga/creacion") 
 	public String creacionLiga(Model model, HttpSession session){
 		if((boolean) session.getAttribute("loged")){
@@ -328,6 +281,10 @@ public class LigaController {
 		}
 		boolean gestionarliga = true;
 		String mensaje = "";
+		
+		
+		
+		
 		if(nombreLiga==""){
 			mensaje = "El nombre de la Liga debe tener al menos un caracter";
 			model.addAttribute("gestionarliga", gestionarliga);
@@ -383,6 +340,8 @@ public class LigaController {
 		equipo1.get(0).setPuntuacion(vic-der);
 		equipo.save(equipo1.get(0));
 		mensaje="Clasificacion actualizada correctamente";
+		
+		
 		model.addAttribute("gestionarliga", gestionarliga);
 		model.addAttribute("mensaje", mensaje);					
 		return "gestionarliga";	
