@@ -129,7 +129,7 @@ Permisos a la clave privada:
  chmod 0600 azureus.key
  
 Acceder a la maquina virtual con un cliente ssh
- ssh azureus.key azureuser@ip publica
+ ssh -p puerto azureuser@ip publica
  
 Instalamos OpenJDK 8 JRE y mysql con los siguientes comandos:
  sudo add-apt-repository ppa:openjdk-r/ppa
@@ -150,7 +150,7 @@ Creamos el ejecutable desde spring con boton derecho run as-> maven install
 
 Subir el ejecutable desde nuestro equipo a la maquina virtual:
 
- scp -i /path/to/azureus.key aplicacion.jar azureuser@<ip publica>:/home/azureuser/
+scp -i azureus.key -P puerto application.jar azureuser@<ip publica>:/home/azureuser/
 Acceder a la maquina virtual como ya hemos visto en el paso 4:
 
 Ejecutar la aplicacion desde la maquina virtual:
