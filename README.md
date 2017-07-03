@@ -151,7 +151,10 @@ Creamos el ejecutable desde spring con boton derecho run as-> maven install
 Subir el ejecutable desde nuestro equipo a la maquina virtual:
 
 scp -i azureus.key -P puerto application.jar azureuser@<ip publica>:/home/azureuser/
+
 Acceder a la maquina virtual como ya hemos visto en el paso 4:
+
+ssh -p puerto azureuser@<ip publica>
 
 Ejecutar la aplicacion desde la maquina virtual:
 
